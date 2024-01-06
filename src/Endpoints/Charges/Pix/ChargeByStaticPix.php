@@ -16,8 +16,7 @@ class ChargeByStaticPix implements AsaasChargeInterface
 
     public function __construct(
         protected StaticPixDTO $staticPixDTO,
-    )
-    {
+    ) {
     }
 
     public function getPath(): string

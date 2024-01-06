@@ -23,8 +23,7 @@ class OtherTransfer implements AsaasInterface
         public readonly ?PixTypeEnum      $pixTypeEnum = null,
         public readonly ?string           $descriptionForPix = null,
         public readonly ?string           $scheduleDate = null,
-    )
-    {
+    ) {
     }
 
     public function getPath(): string
@@ -75,7 +74,7 @@ class OtherTransfer implements AsaasInterface
 
         $resultData = array_merge($data, $otherData);
 
-//        dd($resultData);
+        //        dd($resultData);
 
         return $resultData;
     }

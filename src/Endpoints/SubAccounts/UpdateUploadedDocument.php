@@ -16,7 +16,8 @@ class UpdateUploadedDocument implements AsaasInterface
         public readonly string $documentId,
         public readonly array $documentFile,
         public readonly string $apiKey,
-    ) { }
+    ) {
+    }
 
     public function getPath(): string
     {

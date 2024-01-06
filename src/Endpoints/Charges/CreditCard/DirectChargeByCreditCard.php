@@ -15,8 +15,7 @@ class DirectChargeByCreditCard implements AsaasChargeInterface
 
     public function __construct(
         protected DirectCreditCardDTO $directCreditCardDTO,
-    )
-    {
+    ) {
     }
 
     public function getPath(): string

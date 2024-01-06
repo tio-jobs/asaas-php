@@ -15,8 +15,7 @@ class PartialChargeByCreditCard implements AsaasChargeInterface
 
     public function __construct(
         protected PartialCreditCardDTO $partialCreditCardDTO,
-    )
-    {
+    ) {
     }
 
     public function getPath(): string

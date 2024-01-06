@@ -16,8 +16,7 @@ class GetTransfer implements AsaasInterface
     public function __construct(
         public readonly string $apiKey,
         public readonly string $transferId,
-    )
-    {
+    ) {
     }
 
     public function getPath(): string

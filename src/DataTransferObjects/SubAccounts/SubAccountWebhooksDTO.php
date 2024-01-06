@@ -15,9 +15,7 @@ class SubAccountWebhooksDTO
         public readonly bool $enabled = true,
         public readonly bool $interrupted = true,
         public ?string       $authToken = null,
-
-    )
-    {
+    ) {
         if (blank($this->url)) {
             $this->url = config("asaas-php.mode.{$this->getMode()}.webhook_url");
         }

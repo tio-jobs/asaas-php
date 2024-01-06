@@ -16,7 +16,8 @@ class DeleteUploadedDocument implements AsaasInterface
     public function __construct(
         public readonly string $documentId,
         public readonly ?string $apiKey = null,
-    ) { }
+    ) {
+    }
 
     public function getPath(): string
     {

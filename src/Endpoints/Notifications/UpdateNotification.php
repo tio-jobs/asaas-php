@@ -17,7 +17,8 @@ class UpdateNotification implements AsaasInterface
         public readonly string $apiKey,
         public readonly string $notificationId,
         public readonly UpdateNotificationDTO $updateNotificationDTO,
-    ) { }
+    ) {
+    }
 
     public function getPath(): string
     {

@@ -6,5 +6,6 @@ trait HasDocument
 {
     public function __construct(
         public readonly string $document,
-    ) { }
+    ) {
+    }
 }

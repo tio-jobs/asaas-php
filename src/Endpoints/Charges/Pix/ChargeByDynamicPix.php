@@ -16,8 +16,7 @@ class ChargeByDynamicPix implements AsaasChargeInterface
 
     public function __construct(
         protected DynamicPixDTO $dynamicPixDTO,
-    )
-    {
+    ) {
     }
 
     public function getPath(): string

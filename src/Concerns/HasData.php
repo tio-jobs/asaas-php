@@ -6,5 +6,6 @@ trait HasData
 {
     public function __construct(
         public readonly array $data,
-    ) { }
+    ) {
+    }
 }

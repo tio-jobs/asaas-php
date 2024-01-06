@@ -19,9 +19,7 @@ class SubAccountDTO
         public readonly SubAccountWebhooksDTO $subAccountWebhooksDTO,
         public readonly string                $complement = '',
         public readonly string                $site = '',
-
-    )
-    {
+    ) {
         $this->document = sanitize($this->document);
         $this->mobilePhone = sanitize($this->mobilePhone);
     }

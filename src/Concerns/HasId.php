@@ -6,5 +6,6 @@ trait HasId
 {
     public function __construct(
         public readonly string $id,
-    ) { }
+    ) {
+    }
 }

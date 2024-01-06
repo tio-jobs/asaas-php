@@ -602,3 +602,13 @@ Route::post('/webhooks/asaas', function (Request $request) {
     \Illuminate\Support\Facades\Log::info('/webhooks/asaas', $request->all());
 });
 ```
+
+---
+### CONTRIBUTING - STEP BY STEP
+1. Fork this project on your github account
+2. Clone the forked project on your local environment
+3. So now, you can install dependencies and activate the hooks:
+```bash
+composer install
+ 
+```

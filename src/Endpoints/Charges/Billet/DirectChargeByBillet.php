@@ -14,8 +14,7 @@ class DirectChargeByBillet implements AsaasChargeInterface
 
     public function __construct(
         protected DirectBilletDTO $directBilletDTO,
-    )
-    {
+    ) {
     }
 
     public function getPath(): string

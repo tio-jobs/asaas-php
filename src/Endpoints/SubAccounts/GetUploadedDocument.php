@@ -17,7 +17,8 @@ class GetUploadedDocument implements AsaasInterface
     public function __construct(
         public readonly string $apiKey,
         public readonly string $documentId,
-    ) { }
+    ) {
+    }
 
     public function getPath(): string
     {

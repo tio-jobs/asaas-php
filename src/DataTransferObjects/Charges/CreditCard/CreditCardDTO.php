@@ -10,5 +10,6 @@ class CreditCardDTO
         public readonly string $expiryMonth,
         public readonly string $expiryYear,
         public readonly string $ccv,
-    ) { }
+    ) {
+    }
 }

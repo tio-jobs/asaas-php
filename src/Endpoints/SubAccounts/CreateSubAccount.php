@@ -16,7 +16,8 @@ class CreateSubAccount implements AsaasInterface
 
     public function __construct(
         protected SubAccountDTO $subAccountDTO,
-    ) { }
+    ) {
+    }
 
     public function getPath(): string
     {

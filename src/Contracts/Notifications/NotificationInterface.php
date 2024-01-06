@@ -1,7 +1,5 @@
 <?php
 
-
-
 namespace TioJobs\AsaasPhp\Contracts\Notifications;
 
 interface NotificationInterface

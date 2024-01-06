@@ -17,7 +17,8 @@ class UploadDocument implements AsaasInterface
         public readonly string $documentId,
         public readonly FileDocumentTypeEnum $type,
         public readonly array $documentFile,
-    ) { }
+    ) {
+    }
 
     public function getPath(): string
     {

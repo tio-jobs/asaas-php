@@ -23,7 +23,9 @@
         "pestphp/pest": "^2.28",
         "pestphp/pest-plugin-faker": "^2.0",
         "pestphp/pest-plugin-laravel": "^2.2",
-        "pestphp/pest-plugin-watch": "^2.0"
+        "pestphp/pest-plugin-watch": "^2.0",
+        "captainhook/captainhook": "^5.19",
+        "friendsofphp/php-cs-fixer": "^3.46"
     },
     "autoload": {
         "psr-4": {

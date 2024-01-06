@@ -6,5 +6,6 @@ trait HasApiKey
 {
     public function __construct(
         public readonly string $apiKey,
-    ) { }
+    ) {
+    }
 }

@@ -18,8 +18,7 @@ class TransferToAsaas implements AsaasInterface
         public readonly string            $apiKey,
         public readonly float             $value,
         public readonly string $walletId,
-    )
-    {
+    ) {
     }
 
     public function getPath(): string

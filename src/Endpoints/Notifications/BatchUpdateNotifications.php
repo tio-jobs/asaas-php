@@ -17,7 +17,8 @@ class BatchUpdateNotifications implements AsaasInterface
     public function __construct(
         public readonly string $apiKey,
         public readonly string $customerId,
-    ) { }
+    ) {
+    }
 
     public function getPath(): string
     {

@@ -16,7 +16,6 @@ readonly class UpdateNotificationDTO
         public bool                $phoneCallEnabledForCustomer = false,
         public bool                $whatsappEnabledForCustomer = true,
         public ?ScheduleOffsetEnum $scheduleOffset = null,
-    )
-    {
+    ) {
     }
 }
