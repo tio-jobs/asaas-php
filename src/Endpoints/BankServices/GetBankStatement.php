@@ -33,6 +33,8 @@ class GetBankStatement implements AsaasInterface
     public function getPath(): string
     {
         $endpoint = config("asaas-php.mode.{$this->getMode()}.url");
+        assert(is_string($endpoint));
+        assert(is_string($endpoint));
 
         return "{$endpoint}/financialTransactions?startDate={$this->startDate}&finishDate={$this->endDate}&offset={$this->offset}&limit={$this->limit}";
     }

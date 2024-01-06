@@ -16,18 +16,26 @@ class UploadDocument implements AsaasInterface
         public readonly string $apiKey,
         public readonly string $documentId,
         public readonly FileDocumentTypeEnum $type,
+
+        /** @var array<int,string> */
         public readonly array $documentFile,
     ) {
     }
 
     public function getPath(): string
     {
-        $endpoint = config("asaas-php.mode.{$this->getMode()}.url");
+        $endpoint = config("asaas-php.mode.{$this->getMode()}.url") ?? '';
+        assert(is_string($endpoint));
 
         return "{$endpoint}/myAccount/documents/{$this->documentId}";
     }
 
-
+    /**
+     * @return array{
+     *     type: 'CUSTOM'|'ENTREPRENEUR_REQUIREMENT'|'IDENTIFICATION'|'MINUTES_OF_ELECTION'|'SOCIAL_CONTRACT',
+     *     0: array<int,string>
+     *     }
+     */
     public function getData(): array
     {
         return [

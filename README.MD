@@ -612,3 +612,8 @@ Route::post('/webhooks/asaas', function (Request $request) {
 composer install
  
 ```
+
+Running code style manually:
+```bash
+./vendor/bin/php-cs-fixer fix --diff
+```

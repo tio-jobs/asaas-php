@@ -1,14 +1,14 @@
 <?php
 
 if (!function_exists('cleanString')) {
-    function cleanString(string $string): string
+    function cleanString(string $string): string|null
     {
         return preg_replace('/[^A-Za-z0-9]/', '', $string);
     }
 }
 
 if (!function_exists('sanitize')) {
-    function sanitize(string $data): string
+    function sanitize(string $data): string|null
     {
         return cleanString($data);
     }
@@ -22,8 +22,10 @@ if (!function_exists('get_remote_ip')) {
 }
 
 if (!function_exists('attach')) {
+    /** @return array<string,string> */
     function attach(string $filePath, string $fieldName = 'file'): array
     {
+        /** @phpstan-ignore-next-line  */
         $fileName = str($filePath)->afterLast('/')->toString();
 
         return [

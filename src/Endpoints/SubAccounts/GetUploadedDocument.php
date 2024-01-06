@@ -23,6 +23,7 @@ class GetUploadedDocument implements AsaasInterface
     public function getPath(): string
     {
         $endpoint = config("asaas-php.mode.{$this->getMode()}.url");
+        assert(is_string($endpoint));
 
         return "{$endpoint}/myAccount/documents/files/{$this->documentId}";
     }

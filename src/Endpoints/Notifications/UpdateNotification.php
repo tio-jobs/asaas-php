@@ -23,6 +23,7 @@ class UpdateNotification implements AsaasInterface
     public function getPath(): string
     {
         $endpoint = config("asaas-php.mode.{$this->getMode()}.url");
+        assert(is_string($endpoint));
 
         return "{$endpoint}/notifications/{$this->notificationId}";
     }
