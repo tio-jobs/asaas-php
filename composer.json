@@ -1,0 +1,58 @@
+{
+    "name": "tio-jobs/asaas-php",
+    "description": "The missing ASAAS PHP/Laravel package",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tio Jobs",
+            "email": "icarojobsoficial@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "illuminate/support": "^9.52.16 || ^10.28.0 || ^11.0",
+        "illuminate/container": "^9.52.16 || ^10.28.0 || ^11.0",
+        "illuminate/contracts": "^9.52.16 || ^10.28.0 || ^11.0"
+    },
+    "require-dev": {
+        "roave/security-advisories": "dev-latest",
+        "laravel/pint": "^1.0",
+        "nunomaduro/collision": "^7.9",
+        "orchestra/testbench": "^8.0",
+        "larastan/larastan": "^2.7",
+        "pestphp/pest": "^2.28",
+        "pestphp/pest-plugin-faker": "^2.0",
+        "pestphp/pest-plugin-laravel": "^2.2",
+        "pestphp/pest-plugin-watch": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "TioJobs\\AsaasPhp\\": "src/"
+        },
+        "files": [
+            "src/Helpers/custom-helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TioJobs\\AsaasPhp\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "TioJobs\\AsaasPhp\\Providers\\AsaasPhpServiceProvider"
+            ],
+            "aliases": {
+                "AsaasPhp": "TioJobs\\AsaasPhp\\Facades\\AsaasPhp"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}
