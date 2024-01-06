@@ -20,6 +20,6 @@ class FindCustomerByDocument implements AsaasInterface
         $endpoint = config("asaas-php.mode.{$this->getMode()}.url");
         assert(is_string($endpoint));
 
-        return "{$endpoint}/customers?cpfCnpj=".sanitize($this->id);
+        return "{$endpoint}/customers?cpfCnpj=".sanitize($this->document);
     }
 }

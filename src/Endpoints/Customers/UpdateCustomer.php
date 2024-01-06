@@ -53,6 +53,7 @@ class UpdateCustomer implements AsaasInterface
     public function getData(): array
     {
         $data = json_decode(json_encode($this, JSON_THROW_ON_ERROR), true, 512, JSON_THROW_ON_ERROR);
+        assert(is_array($data));
         unset($data['apiKey'], $data['id']);
 
         return array_filter($data, fn ($value) => !is_null($value));

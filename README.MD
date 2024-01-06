@@ -55,14 +55,14 @@ dd($response);
 ---
 ### CUSTOMERS - CREATE
 ```php
-$data = [
-    'name' => 'Teste Usuario',
-    'cpfCnpj' => sanitize("012.345.678-90"),
-    'mobilePhone' => sanitize("(16) 99222-2222"),
-    'email' => str("Teste@teste.com.br")->lower()->toString(),
-];
+$resource = new \TioJobs\AsaasPhp\Endpoints\Customers\CreateCustomer(
+    apiKey: config('asaas-php.mode.sandbox.key'),
+    name: 'Teste Usuario',
+    cpfCnpj: sanitize("012.345.678-90"),
+    email: str("Teste@teste.com.br")->lower()->toString(),
+    mobilePhone: sanitize("(16) 99222-2222"),
+);
 
-$resource = new \TioJobs\AsaasPhp\Endpoints\Customers\CreateCustomer(data: $data);
 $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::create($resource);
 
 dd($response);
@@ -612,8 +612,15 @@ Route::post('/webhooks/asaas', function (Request $request) {
 composer install
  
 ```
+4. Copy the `phpunit.xml.dist` to `phpunit.xml` with your desired variables on bottom file.
+5. Enjoy it!
 
 Running code style manually:
 ```bash
 ./vendor/bin/php-cs-fixer fix --diff
+```
+
+Running code analysis manually:
+```bash
+./vendor/bin/phpstan analyse --memory-limit=2G
 ```

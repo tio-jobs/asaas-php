@@ -6,13 +6,36 @@ use TioJobs\AsaasPhp\Concerns\HasBlankData;
 use TioJobs\AsaasPhp\Concerns\HasData;
 use TioJobs\AsaasPhp\Concerns\HasMode;
 use TioJobs\AsaasPhp\Concerns\HasNullableToken;
+use TioJobs\AsaasPhp\Concerns\HasToken;
 use TioJobs\AsaasPhp\Contracts\Core\AsaasInterface;
 
 class CreateCustomer implements AsaasInterface
 {
-    use HasData;
+    use HasToken;
     use HasMode;
-    use HasNullableToken;
+
+    public function __construct(
+        public readonly string $apiKey,
+        public readonly ?string $name = null,
+        public readonly ?string $cpfCnpj = null,
+        public readonly ?string $email = null,
+        public readonly ?string $phone = null,
+        public readonly ?string $mobilePhone = null,
+        public readonly ?string $address = null,
+        public readonly ?string $addressNumber = null,
+        public readonly ?string $complement = null,
+        public readonly ?string $province = null,
+        public readonly ?string $postalCode = null,
+        public readonly ?string $externalReference = null,
+        public readonly ?bool $notificationDisabled = null,
+        public readonly ?string $additionalEmails = null,
+        public readonly ?string $municipalInscription = null,
+        public readonly ?string $stateInscription = null,
+        public readonly ?string $observations = null,
+        public readonly ?string $groupName = null,
+        public readonly ?string $company = null,
+    ) {
+    }
 
     public function getPath(): string
     {
@@ -22,9 +45,16 @@ class CreateCustomer implements AsaasInterface
         return "{$endpoint}/customers";
     }
 
-
+    /**
+     * @throws \JsonException
+     * @return array<string,mixed>
+     */
     public function getData(): array
     {
-        return $this->data;
+        $data = json_decode(json_encode($this, JSON_THROW_ON_ERROR), true, 512, JSON_THROW_ON_ERROR);
+        assert(is_array($data));
+        unset($data['apiKey']);
+
+        return array_filter($data, fn ($value) => !is_null($value));
     }
 }
