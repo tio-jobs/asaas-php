@@ -27,6 +27,7 @@ class ChargeByStaticPix implements AsaasChargeInterface
         return "{$endpoint}/pix/qrCodes/static";
     }
 
+    /** @return array<string,mixed> */
     public function getData(): array
     {
         return [

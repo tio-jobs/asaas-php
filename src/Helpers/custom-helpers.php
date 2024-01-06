@@ -1,14 +1,14 @@
 <?php
 
 if (!function_exists('cleanString')) {
-    function cleanString(string $string): string|null
+    function cleanString(string $string): string
     {
-        return preg_replace('/[^A-Za-z0-9]/', '', $string);
+        return (string) preg_replace('/[^A-Za-z0-9]/', '', $string);
     }
 }
 
 if (!function_exists('sanitize')) {
-    function sanitize(string $data): string|null
+    function sanitize(string $data): string
     {
         return cleanString($data);
     }

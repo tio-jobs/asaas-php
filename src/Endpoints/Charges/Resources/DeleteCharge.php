@@ -2,14 +2,18 @@
 
 namespace TioJobs\AsaasPhp\Endpoints\Charges\Resources;
 
+use TioJobs\AsaasPhp\Concerns\HasBlankData;
 use TioJobs\AsaasPhp\Concerns\HasId;
 use TioJobs\AsaasPhp\Concerns\HasMode;
+use TioJobs\AsaasPhp\Concerns\HasToken;
 use TioJobs\AsaasPhp\Contracts\Core\AsaasInterface;
 
 class DeleteCharge implements AsaasInterface
 {
     use HasId;
+    use HasToken;
     use HasMode;
+    use HasBlankData;
 
     public function getPath(): string
     {
@@ -17,10 +21,5 @@ class DeleteCharge implements AsaasInterface
         assert(is_string($endpoint));
 
         return "{$endpoint}/payments/{$this->id}";
-    }
-
-    public function getData(): array
-    {
-        return [];
     }
 }

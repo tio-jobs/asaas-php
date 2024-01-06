@@ -7,12 +7,7 @@ use Illuminate\Support\Facades\Http;
 
 trait HasClient
 {
-    public function __construct(
-        protected ?Http $client = null,
-    ) {
-    }
-
-    public function getClient(string $accessToken): PendingRequest
+    public function getClient(string|null $accessToken): PendingRequest
     {
         return Http::withHeader('access_token', $accessToken);
     }

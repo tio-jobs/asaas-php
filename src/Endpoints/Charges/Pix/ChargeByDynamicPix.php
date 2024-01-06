@@ -27,6 +27,7 @@ class ChargeByDynamicPix implements AsaasChargeInterface
         return "{$endpoint}/payments";
     }
 
+    /** @return array<string,mixed> */
     public function getData(): array
     {
         return [
@@ -37,8 +38,14 @@ class ChargeByDynamicPix implements AsaasChargeInterface
         ];
     }
 
+    /**
+     * @param array<string,mixed> $response
+     * @return array<string,string>
+     */
     public function getPixPaymentData(array $response): array
     {
+        assert(is_array($response));
+
         $endpoint = config("asaas-php.mode.{$this->getMode()}.url");
         assert(is_string($endpoint));
 

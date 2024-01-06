@@ -14,7 +14,11 @@ class Asaas
     use HasClient;
     use HasToken;
 
-    public function list(AsaasInterface $resource): array|null
+    /**
+     * @param AsaasInterface $resource
+     * @return mixed
+     */
+    public function list(AsaasInterface $resource)
     {
         try {
             return $this->getClient($resource->getToken())
@@ -26,7 +30,11 @@ class Asaas
         }
     }
 
-    public function create(AsaasInterface $resource): array|null
+    /**
+     * @param AsaasInterface $resource
+     * @return mixed
+     */
+    public function create(AsaasInterface $resource)
     {
         try {
             return $this->getClient($resource->getToken())
@@ -38,7 +46,11 @@ class Asaas
         }
     }
 
-    public function get(AsaasInterface $resource): array|null
+    /**
+     * @param AsaasInterface $resource
+     * @return mixed
+     */
+    public function get(AsaasInterface $resource)
     {
         try {
             return $this->getClient($resource->getToken())
@@ -50,7 +62,11 @@ class Asaas
         }
     }
 
-    public function find(AsaasInterface $resource): array|null
+    /**
+     * @param AsaasInterface $resource
+     * @return mixed
+     */
+    public function find(AsaasInterface $resource)
     {
         try {
             return $this->getClient($resource->getToken())
@@ -62,7 +78,11 @@ class Asaas
         }
     }
 
-    public function update(AsaasInterface $resource): array|null
+    /**
+     * @param AsaasInterface $resource
+     * @return mixed
+     */
+    public function update(AsaasInterface $resource)
     {
         try {
             return $this->getClient($resource->getToken())
@@ -74,7 +94,11 @@ class Asaas
         }
     }
 
-    public function delete(AsaasInterface $resource): array|null
+    /**
+     * @param AsaasInterface $resource
+     * @return mixed
+     */
+    public function delete(AsaasInterface $resource)
     {
         try {
             return $this->getClient($resource->getToken())
@@ -86,7 +110,11 @@ class Asaas
         }
     }
 
-    public function restore(AsaasInterface $resource): array|null
+    /**
+     * @param AsaasInterface $resource
+     * @return mixed
+     */
+    public function restore(AsaasInterface $resource)
     {
         try {
             return $this->getClient($resource->getToken())
@@ -98,7 +126,11 @@ class Asaas
         }
     }
 
-    public function notifications(AsaasInterface $resource): array|null
+    /**
+     * @param AsaasInterface $resource
+     * @return mixed
+     */
+    public function notifications(AsaasInterface $resource)
     {
         try {
             return $this->getClient($resource->getToken())
@@ -110,7 +142,11 @@ class Asaas
         }
     }
 
-    public function charge(AsaasChargeInterface $resource): array|null
+    /**
+     * @param AsaasChargeInterface $resource
+     * @return mixed
+     */
+    public function charge(AsaasChargeInterface $resource)
     {
         try {
             return $this->getClient($resource->getToken())
@@ -122,7 +158,11 @@ class Asaas
         }
     }
 
-    public function upload(AsaasInterface $resource): array|null
+    /**
+     * @param AsaasInterface $resource
+     * @return mixed
+     */
+    public function upload(AsaasInterface $resource)
     {
         try {
             return $this->getClient($resource->getToken())

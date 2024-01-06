@@ -30,6 +30,7 @@ class TransferToAsaas implements AsaasInterface
     }
 
 
+    /** @return array<string, float|string> */
     public function getData(): array
     {
 

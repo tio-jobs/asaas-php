@@ -35,6 +35,7 @@ class OtherTransfer implements AsaasInterface
     }
 
 
+    /** @return array<string, array<string, array<string, string>|string>|float|string|null> */
     public function getData(): array
     {
 
@@ -73,10 +74,6 @@ class OtherTransfer implements AsaasInterface
             'scheduleData' => $this->scheduleDate,
         ];
 
-        $resultData = array_merge($data, $otherData);
-
-        //        dd($resultData);
-
-        return $resultData;
+        return array_merge($data, $otherData);
     }
 }

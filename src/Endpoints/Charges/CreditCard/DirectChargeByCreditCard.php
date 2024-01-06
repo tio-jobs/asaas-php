@@ -26,6 +26,7 @@ class DirectChargeByCreditCard implements AsaasChargeInterface
         return "{$endpoint}/payments";
     }
 
+    /** @return array<string, array<string, string|null>|float|int|string> */
     public function getData(): array
     {
         return [

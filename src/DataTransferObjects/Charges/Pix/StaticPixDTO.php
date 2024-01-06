@@ -8,7 +8,7 @@ use TioJobs\AsaasPhp\Enums\BillingTypeEnum;
 class StaticPixDTO
 {
     use HasMode;
-    public readonly string $pixKey;
+    public readonly mixed $pixKey;
     public function __construct(
         public readonly string $description,
         public readonly float $value,

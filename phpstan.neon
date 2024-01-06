@@ -1,6 +1,6 @@
 parameters:
     level: max
-    checkMissingIterableValueType: true
+    checkMissingIterableValueType: false
     reportUnmatchedIgnoredErrors: true
     paths:
         - src

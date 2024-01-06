@@ -25,6 +25,7 @@ class DirectChargeByBillet implements AsaasChargeInterface
         return "{$endpoint}/payments";
     }
 
+    /** @return array<string, array<string, string|null>|float|int|string> */
     public function getData(): array
     {
         return [
@@ -35,6 +36,10 @@ class DirectChargeByBillet implements AsaasChargeInterface
         ];
     }
 
+    /**
+     * @param array<string,string> $response
+     * @return string
+     */
     public function getBilletUrl(array $response): string
     {
         return $response['bankSlipUrl'] ?? '';

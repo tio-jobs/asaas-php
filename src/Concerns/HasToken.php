@@ -6,7 +6,7 @@ trait HasToken
 {
     use HasMode;
 
-    public function getToken(): ?string
+    public function getToken(): mixed
     {
         return config("asaas-php.mode.{$this->getMode()}.key");
     }

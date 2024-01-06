@@ -4,11 +4,13 @@ namespace TioJobs\AsaasPhp\Endpoints\Charges\Resources;
 
 use TioJobs\AsaasPhp\Concerns\HasIdAndData;
 use TioJobs\AsaasPhp\Concerns\HasMode;
+use TioJobs\AsaasPhp\Concerns\HasToken;
 use TioJobs\AsaasPhp\Contracts\Core\AsaasInterface;
 
 class UpdateCharge implements AsaasInterface
 {
     use HasIdAndData;
+    use HasToken;
     use HasMode;
 
     public function getPath(): string
@@ -19,6 +21,7 @@ class UpdateCharge implements AsaasInterface
         return "{$endpoint}/payments/{$this->id}";
     }
 
+    /** @return array<string,string> */
     public function getData(): array
     {
         return $this->data;
