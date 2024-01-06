@@ -28,6 +28,7 @@ class UpdateNotification implements AsaasInterface
         return "{$endpoint}/notifications/{$this->notificationId}";
     }
 
+    /** @return array<string, bool|string> */
     public function getData(): array
     {
         $data = [
@@ -42,7 +43,7 @@ class UpdateNotification implements AsaasInterface
 
         if (!is_null($this->updateNotificationDTO->scheduleOffset?->value)) {
             $merge = [
-                'scheduleOffset' => $this->updateNotificationDTO->scheduleOffset?->value,
+                'scheduleOffset' => $this->updateNotificationDTO->scheduleOffset->value,
             ];
 
             $data = array_merge($data, $merge);

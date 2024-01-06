@@ -12,7 +12,8 @@
         "php": "^8.2",
         "illuminate/support": "^9.52.16 || ^10.28.0 || ^11.0",
         "illuminate/container": "^9.52.16 || ^10.28.0 || ^11.0",
-        "illuminate/contracts": "^9.52.16 || ^10.28.0 || ^11.0"
+        "illuminate/contracts": "^9.52.16 || ^10.28.0 || ^11.0",
+        "guzzlehttp/guzzle": "^7.8"
     },
     "require-dev": {
         "roave/security-advisories": "dev-latest",

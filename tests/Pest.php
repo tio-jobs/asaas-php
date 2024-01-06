@@ -1,5 +1,3 @@
 <?php
 
-
-
-uses(\Orchestra\Testbench\TestCase::class)->in(__DIR__);
+uses(\TioJobs\AsaasPhp\Tests\TestCase::class)->in(__DIR__);

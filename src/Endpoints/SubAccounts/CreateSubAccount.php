@@ -28,6 +28,9 @@ class CreateSubAccount implements AsaasInterface
     }
 
 
+    /**
+     * @return array<string, array<int, array<string, bool|int|string|null>>|string>
+     */
     public function getData(): array
     {
         return [

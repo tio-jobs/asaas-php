@@ -9,3 +9,4 @@ index.php
 main.php
 test.php
 coverage.xml
+phpunit.xml

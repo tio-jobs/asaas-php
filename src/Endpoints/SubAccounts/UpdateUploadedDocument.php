@@ -30,6 +30,9 @@ class UpdateUploadedDocument implements AsaasInterface
     }
 
 
+    /**
+     * @return array<int, array<int,string>>
+     */
     public function getData(): array
     {
         return [

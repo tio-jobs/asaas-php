@@ -12,6 +12,7 @@ class BatchUpdateNotifications implements AsaasInterface
     use HasMode;
     use HasNullableToken;
 
+    /** @var array<int|string, array<string, bool|string|null>|bool|string>  */
     protected array $notifications = [];
 
     public function __construct(
@@ -42,6 +43,7 @@ class BatchUpdateNotifications implements AsaasInterface
         ];
     }
 
+    /** @return array<string,string|array<int|string, array<string, bool|string|null>|bool|string>> */
     public function getData(): array
     {
         return [

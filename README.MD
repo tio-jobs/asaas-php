@@ -89,14 +89,14 @@ dd($response);
 
 ---
 ### CUSTOMERS - UPDATE
+Here an example of mobile phone update using the `asaas-php`:
 ```php
-$customerId = 'cus_000005824295';
+$resource = new \TioJobs\AsaasPhp\Endpoints\Customers\UpdateCustomer(
+    apiKey: config('asaas-php.mode.sandbox.key'),
+    id: 'cus_000005824295',
+    mobilePhone: sanitize("(16) 99333-3333"),
+);
 
-$data = [
-    'mobilePhone' => sanitize("(16) 99333-3333"),
-];
-
-$resource = new \TioJobs\AsaasPhp\Endpoints\Customers\UpdateCustomer(id: $customerId, data: $data);
 $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::update($resource);
 
 dd($response);

@@ -17,7 +17,7 @@ class Asaas
     public function list(AsaasInterface $resource): array|null
     {
         try {
-            return $this->client::withHeader('access_token', $resource->getToken() ?? $this->getToken())
+            return $this->getClient($resource->getToken())
                 ->get($resource->getPath())
                 ->throw()
                 ->json();
@@ -29,7 +29,7 @@ class Asaas
     public function create(AsaasInterface $resource): array|null
     {
         try {
-            return $this->client::withHeader('access_token', $resource->getToken() ?? $this->getToken())
+            return $this->getClient($resource->getToken())
                 ->post($resource->getPath(), $resource->getData())
                 ->throw()
                 ->json();
@@ -41,7 +41,7 @@ class Asaas
     public function get(AsaasInterface $resource): array|null
     {
         try {
-            return $this->client::withHeader('access_token', $resource->getToken() ?? $this->getToken())
+            return $this->getClient($resource->getToken())
                 ->get($resource->getPath())
                 ->throw()
                 ->json();
@@ -53,7 +53,7 @@ class Asaas
     public function find(AsaasInterface $resource): array|null
     {
         try {
-            return $this->client::withHeader('access_token', $resource->getToken() ?? $this->getToken())
+            return $this->getClient($resource->getToken())
                 ->get($resource->getPath())
                 ->throw()
                 ->json();
@@ -65,7 +65,7 @@ class Asaas
     public function update(AsaasInterface $resource): array|null
     {
         try {
-            return $this->client::withHeader('access_token', $resource->getToken() ?? $this->getToken())
+            return $this->getClient($resource->getToken())
                 ->put($resource->getPath(), $resource->getData())
                 ->throw()
                 ->json();
@@ -77,7 +77,7 @@ class Asaas
     public function delete(AsaasInterface $resource): array|null
     {
         try {
-            return $this->client::withHeader('access_token', $resource->getToken() ?? $this->getToken())
+            return $this->getClient($resource->getToken())
                 ->delete($resource->getPath())
                 ->throw()
                 ->json();
@@ -89,7 +89,7 @@ class Asaas
     public function restore(AsaasInterface $resource): array|null
     {
         try {
-            return $this->client::withHeader('access_token', $resource->getToken() ?? $this->getToken())
+            return $this->getClient($resource->getToken())
                 ->post($resource->getPath())
                 ->throw()
                 ->json();
@@ -101,7 +101,7 @@ class Asaas
     public function notifications(AsaasInterface $resource): array|null
     {
         try {
-            return $this->client::withHeader('access_token', $resource->getToken() ?? $this->getToken())
+            return $this->getClient($resource->getToken())
                 ->get($resource->getPath())
                 ->throw()
                 ->json();
@@ -113,7 +113,7 @@ class Asaas
     public function charge(AsaasChargeInterface $resource): array|null
     {
         try {
-            return $this->client::withHeader('access_token', $resource->getToken() ?? $this->getToken())
+            return $this->getClient($resource->getToken())
                 ->post($resource->getPath(), $resource->getData())
                 ->throw()
                 ->json();
@@ -125,7 +125,7 @@ class Asaas
     public function upload(AsaasInterface $resource): array|null
     {
         try {
-            return $this->client::withHeader('access_token', $resource->getToken() ?? $this->getToken())
+            return $this->getClient($resource->getToken())
                 ->asMultipart()
                 ->post($resource->getPath(), $resource->getData())
                 ->throw()
