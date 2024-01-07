@@ -89,6 +89,7 @@ $resource = new \TioJobs\AsaasPhp\Endpoints\Customers\FindCustomerByDocument(
     apiKey: config('asaas-php.mode.sandbox.key'),
     document: '01234567890',
 );
+
 $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::find($resource);
 
 dd($response);

@@ -10,10 +10,15 @@ use TioJobs\AsaasPhp\Contracts\Core\AsaasInterface;
 
 class FindCustomerByDocument implements AsaasInterface
 {
-    use HasDocument;
     use HasMode;
     use HasToken;
     use HasBlankData;
+
+    public function __construct(
+        public readonly string $apiKey,
+        public readonly string $document,
+    ) {
+    }
 
     public function getPath(): string
     {
