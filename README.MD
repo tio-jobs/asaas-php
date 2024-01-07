@@ -73,7 +73,7 @@ For more available fields look at `https://docs.asaas.com/reference/criar-novo-c
 ### CUSTOMERS - GET
 ```php
 $resource = new \TioJobs\AsaasPhp\Endpoints\Customers\GetCustomer(
-    apiKey:nconfig('asaas-php.mode.sandbox.key'),
+    apiKey: config('asaas-php.mode.sandbox.key'),
     id: 'cus_000005500564',
 );
 

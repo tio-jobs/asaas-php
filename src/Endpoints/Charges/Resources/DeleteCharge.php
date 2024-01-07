@@ -10,10 +10,15 @@ use TioJobs\AsaasPhp\Contracts\Core\AsaasInterface;
 
 class DeleteCharge implements AsaasInterface
 {
-    use HasId;
     use HasToken;
     use HasMode;
     use HasBlankData;
+
+    public function __construct(
+        public readonly string $apiKey,
+        public readonly string $id,
+    ) {
+    }
 
     public function getPath(): string
     {
