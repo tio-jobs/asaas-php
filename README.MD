@@ -31,11 +31,13 @@ php artisan vendor:publish
 Add the API KEY constant in your .env file (with single quotes):
 ```bash
 ASAAS_API_VERSION=v3
+ASAAS_SANDBOX_BASE_URL=https://sandbox.asaas.com/api/
 ASAAS_SANDBOX_API_KEY='your-sandbox-key'
 ASAAS_SANDBOX_PIX_KEY=your-sandbox-pix-key
 ASAAS_SANDBOX_EMAIL_ACCOUNT='your-sandbox-email'
 ASAAS_SANDBOX_WEBHOOK_URL='your-sandbox-webhook-url'
 ASAAS_SANDBOX_WEBHOOK_TOKEN='your-random-sandbox-webhook-token'
+ASAAS_PRODUCTION_BASE_URL=https://api.asaas.com/
 ASAAS_PRODUCTION_API_KEY='your-production-key'
 ASAAS_PRODUCTION_PIX_KEY=your-production-pix-key
 ASAAS_PRODUCTION_EMAIL_ACCOUNT='your-production-email'
@@ -48,7 +50,7 @@ ASAAS_PRODUCTION_WEBHOOK_TOKEN='your-random-production-webhook-token'
 ### CUSTOMERS - LIST
 ```php
 $resource = new \TioJobs\AsaasPhp\Endpoints\Customers\ListCustomers(
-    apiKey: config('asaas-php.mode.sandbox.key'),
+    apiKey: config('asaas-php.environment.sandbox.key'),
 );
 
 $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::list($resource);
@@ -60,7 +62,7 @@ dd($response);
 ### CUSTOMERS - CREATE
 ```php
 $resource = new \TioJobs\AsaasPhp\Endpoints\Customers\CreateCustomer(
-    apiKey: config('asaas-php.mode.sandbox.key'),
+    apiKey: config('asaas-php.environment.sandbox.key'),
     name: 'Teste Usuario',
     cpfCnpj: sanitize("012.345.678-90"),
     email: str("Teste@teste.com.br")->lower()->toString(),
@@ -77,7 +79,7 @@ For more available fields look at `https://docs.asaas.com/reference/criar-novo-c
 ### CUSTOMERS - GET
 ```php
 $resource = new \TioJobs\AsaasPhp\Endpoints\Customers\GetCustomer(
-    apiKey: config('asaas-php.mode.sandbox.key'),
+    apiKey: config('asaas-php.environment.sandbox.key'),
     id: 'cus_000005500564',
 );
 
@@ -90,7 +92,7 @@ dd($response);
 ### CUSTOMERS - FIND
 ```php
 $resource = new \TioJobs\AsaasPhp\Endpoints\Customers\FindCustomerByDocument(
-    apiKey: config('asaas-php.mode.sandbox.key'),
+    apiKey: config('asaas-php.environment.sandbox.key'),
     document: '01234567890',
 );
 
@@ -104,7 +106,7 @@ dd($response);
 Here an example of mobile phone update using the `asaas-php`:
 ```php
 $resource = new \TioJobs\AsaasPhp\Endpoints\Customers\UpdateCustomer(
-    apiKey: config('asaas-php.mode.sandbox.key'),
+    apiKey: config('asaas-php.environment.sandbox.key'),
     id: 'cus_000005824295',
     mobilePhone: sanitize("(16) 99333-3333"),
 );
@@ -119,7 +121,7 @@ For more available fields look at `https://docs.asaas.com/reference/atualizar-cl
 ### CUSTOMER - DELETE
 ```php
 $resource = new \TioJobs\AsaasPhp\Endpoints\Customers\DeleteCustomer(
-    apiKey: config('asaas-php.mode.sandbox.key'),
+    apiKey: config('asaas-php.environment.sandbox.key'),
     id: 'cus_000005824295',
 );
 
@@ -132,7 +134,7 @@ dd($response);
 ### CUSTOMERS - RESTORE
 ```php
 $resource = new \TioJobs\AsaasPhp\Endpoints\Customers\RestoreCustomer(
-    apiKey: config('asaas-php.mode.sandbox.key'),
+    apiKey: config('asaas-php.environment.sandbox.key'),
     id: 'cus_000005824295',
 );
 
@@ -145,7 +147,7 @@ dd($response);
 ### CUSTOMERS - NOTIFICATIONS
 ```php
 $resource = new \TioJobs\AsaasPhp\Endpoints\Customers\CustomerNotification(
-    apiKey: config('asaas-php.mode.sandbox.key'),
+    apiKey: config('asaas-php.environment.sandbox.key'),
     id: 'cus_000005824295',
 );
 
@@ -163,7 +165,7 @@ $data = new \TioJobs\AsaasPhp\DataTransferObjects\Charges\Billet\DirectBilletDTO
 );
 
 $resource = new \TioJobs\AsaasPhp\Endpoints\Charges\Billet\DirectChargeByBillet(
-    apiKey: config('asaas-php.mode.sandbox.key'),
+    apiKey: config('asaas-php.environment.sandbox.key'),
     directBilletDTO: $data,
 );
 
@@ -181,7 +183,7 @@ $data = new \TioJobs\AsaasPhp\DataTransferObjects\Charges\Pix\DynamicPixDTO(
 );
 
 $resource = new \TioJobs\AsaasPhp\Endpoints\Charges\Pix\ChargeByDynamicPix(
-    apiKey: config('asaas-php.mode.sandbox.key'),
+    apiKey: config('asaas-php.environment.sandbox.key'),
     dynamicPixDTO: $data,
 );
 
@@ -199,7 +201,7 @@ $data = new \TioJobs\AsaasPhp\DataTransferObjects\Charges\Pix\StaticPixDTO(
 );
 
 $resource = new \TioJobs\AsaasPhp\Endpoints\Charges\Pix\ChargeByStaticPix(
-    apiKey: config('asaas-php.mode.sandbox.key'),
+    apiKey: config('asaas-php.environment.sandbox.key'),
     staticPixDTO: $data,
 );
 
@@ -238,7 +240,7 @@ $directCreditCardDTO = new \TioJobs\AsaasPhp\DataTransferObjects\Charges\CreditC
 );
 
 $resource = new \TioJobs\AsaasPhp\Endpoints\Charges\CreditCard\DirectChargeByCreditCard(
-    apiKey: config('asaas-php.mode.sandbox.key'), 
+    apiKey: config('asaas-php.environment.sandbox.key'), 
     directCreditCardDTO: $directCreditCardDTO,
 );
 
@@ -279,7 +281,7 @@ $partialCreditCardDTO = new \TioJobs\AsaasPhp\DataTransferObjects\Charges\Credit
 );
 
 $resource = new \TioJobs\AsaasPhp\Endpoints\Charges\CreditCard\PartialChargeByCreditCard(
-    apiKey: config('asaas-php.mode.sandbox.key'), 
+    apiKey: config('asaas-php.environment.sandbox.key'), 
     partialCreditCardDTO: $partialCreditCardDTO,
 );
 
@@ -292,7 +294,7 @@ dd($response);
 ### CHARGES - LIST ALL CHARGES
 ```php
 $resource = new \TioJobs\AsaasPhp\Endpoints\Charges\Resources\ListAllCharges(
-    apiKey: config('asaas-php.mode.sandbox.key'),
+    apiKey: config('asaas-php.environment.sandbox.key'),
     limit: 10, 
     offset: 0,
 );
@@ -306,7 +308,7 @@ dd($response);
 ### CHARGES - DELETE CHARGE
 ```php
 $resource = new \TioJobs\AsaasPhp\Endpoints\Charges\Resources\DeleteCharge(
-    apiKey: config('asaas-php.mode.sandbox.key'),
+    apiKey: config('asaas-php.environment.sandbox.key'),
     id: 'pay_t7b3b3fvioxuqx4e',
 );
 
@@ -319,7 +321,7 @@ dd($response);
 ### CHARGES - UPDATE CHARGE
 ```php
 $resource = new \TioJobs\AsaasPhp\Endpoints\Charges\Resources\UpdateCharge(
-    apiKey: config('asaas-php.mode.sandbox.key'),
+    apiKey: config('asaas-php.environment.sandbox.key'),
     id: 'pay_j875qgxq8ycbl42i',
     data: [
         'dueDate' => \Carbon\Carbon::now()->addDay()->format('Y-m-d'),
@@ -336,7 +338,7 @@ dd($response);
 [POST] https://sandbox.asaas.com/api/v3/payments/{id}/documents
 ```php
 $resource = new \TioJobs\AsaasPhp\Endpoints\Charges\Resources\UploadChargeDocument(
-    apiKey: config('asaas-php.mode.sandbox.key'),
+    apiKey: config('asaas-php.environment.sandbox.key'),
     id: 'pay_j875qgxq8ycbl42i',
     data: [
         'availableAfterPayment' => true,
@@ -355,7 +357,7 @@ dd($response);
 [DELETE] https://sandbox.asaas.com/api/v3/payments/{id}/documents/{documentId}
 ```php
 $resource = new \TioJobs\AsaasPhp\Endpoints\Charges\Resources\DeleteUploadedChargeDocument(
-    apiKey: config('asaas-php.mode.sandbox.key'),
+    apiKey: config('asaas-php.environment.sandbox.key'),
     id: 'pay_j875qgxq8ycbl42i',
     document: '4b052313-ec78-42ae-8374-42a1718aab75',
 );
@@ -384,7 +386,7 @@ $subAccountDto = new \TioJobs\AsaasPhp\DataTransferObjects\SubAccounts\SubAccoun
 );
 
 $resource = new \TioJobs\AsaasPhp\Endpoints\SubAccounts\CreateSubAccount(
-    apiKey: config('asaas-php.mode.sandbox.key'),
+    apiKey: config('asaas-php.environment.sandbox.key'),
     subAccountDTO: $subAccountDto,
 );
 
@@ -397,7 +399,7 @@ dd($response);
 ### SUBACCOUNTS - CHECK PENDING DOCUMENTS
 ```php
 $resource = new \TioJobs\AsaasPhp\Endpoints\SubAccounts\CheckPendingDocuments(
-    apiKey: config('asaas-php.mode.sandbox.key'),
+    apiKey: config('asaas-php.environment.sandbox.key'),
 );
 
 $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::get($resource);
@@ -410,7 +412,7 @@ dd($response);
 
 ```php
 $resource = new \TioJobs\AsaasPhp\Endpoints\SubAccounts\UploadDocument(
-    apiKey: config('asaas-php.mode.sandbox.key'),
+    apiKey: config('asaas-php.environment.sandbox.key'),
     documentId: 'b445460f-4bd5-41cc-8493-712b6e0966f2',
     type: \TioJobs\AsaasPhp\Enums\FileDocumentTypeEnum::ENTREPRENEUR_REQUIREMENT,
     documentFile: attach(base_path('packages/tio-jobs/asaas-php/examples/files/test-document.pdf'), 'documentFile'),
@@ -425,7 +427,7 @@ dd($response);
 ### SUBACCOUNTS - GET UPLOADED DOCUMENTS
 ```php
 $resource = new \TioJobs\AsaasPhp\Endpoints\SubAccounts\GetUploadedDocument(
-    apiKey: config('asaas-php.mode.sandbox.key'),
+    apiKey: config('asaas-php.environment.sandbox.key'),
     documentId: '37106b34-21b6-497f-bb12-87d924b34b16', // result of Upload Pending Document
 );
 
@@ -438,7 +440,7 @@ dd($response);
 ### SUBACCOUNJTS - UPDATE UPLOADED DOCUMENT
 ```php
 $resource = new \TioJobs\AsaasPhp\Endpoints\SubAccounts\UpdateUploadedDocument(
-    apiKey: config('asaas-php.mode.sandbox.key'),
+    apiKey: config('asaas-php.environment.sandbox.key'),
     documentId: '09f4903c-55fe-452e-bd4e-129780143214',
     documentFile: attach(filePath: base_path('packages/tio-jobs/asaas-php/examples/files/test-document.pdf'), fieldName: 'documentFile'),
 );
@@ -452,7 +454,7 @@ dd($response);
 ### SUBACCOUNTS - DELETE UPLOADED DOCUMENT
 ```php
 $resource = new \TioJobs\AsaasPhp\Endpoints\SubAccounts\DeleteUploadedDocument(
-    apiKey: config('asaas-php.mode.sandbox.key'),
+    apiKey: config('asaas-php.environment.sandbox.key'),
     documentId: '09f4903c-55fe-452e-bd4e-129780143214',
 );
 
@@ -467,7 +469,7 @@ To see all bank-statement types refer to https://docs.asaas.com/reference/recupe
 
 ```php
 $resource = new \TioJobs\AsaasPhp\Endpoints\BankServices\GetBankStatement(
-    apiKey: config('asaas-php.mode.sandbox.key'),
+    apiKey: config('asaas-php.environment.sandbox.key'),
     startDate: now()->subMonths(3)->format('Y-m-d'),
     endDate: now()->format('Y-m-d'),
     offset: 0,
@@ -494,7 +496,7 @@ $bankAccountDTO = new \TioJobs\AsaasPhp\DataTransferObjects\BankServices\BankAcc
 );
 
 $resource = new \TioJobs\AsaasPhp\Endpoints\BankServices\OtherTransfer(
-    apiKey: config('asaas-php.mode.sandbox.key'),
+    apiKey: config('asaas-php.environment.sandbox.key'),
     value: 10.00,
     operationTypeEnum: \TioJobs\AsaasPhp\Enums\OperationTypeEnum::TED,
     bankAccountDTO: $bankAccountDTO,
@@ -513,7 +515,7 @@ dd($response);
 ### BANK SERVICES - TRANSFER TO ASAAS ACCOUNT
 ```php
 $resource = new \TioJobs\AsaasPhp\Endpoints\BankServices\TransferToAsaas(
-    apiKey: config('asaas-php.mode.sandbox.key'),
+    apiKey: config('asaas-php.environment.sandbox.key'),
     walletId: 'a45e79db-36ab-48e2-a278-d438cf14329f',
     value: 49.90,
 );
@@ -527,7 +529,7 @@ dd($response);
 ### BANK SERVICES - GET TRANSFER
 ```php
 $resource = new \TioJobs\AsaasPhp\Endpoints\BankServices\GetTransfer(
-    apiKey: config('asaas-php.mode.sandbox.key'),
+    apiKey: config('asaas-php.environment.sandbox.key'),
     transferId: 'be0ae5ad-a93e-4f82-8e12-964e5303627a',
 );
 
@@ -540,7 +542,7 @@ dd($response);
 ### BANK SERVICES - GET ALL TRANSFERS
 ```php
 $resource = new \TioJobs\AsaasPhp\Endpoints\BankServices\GetAllTransfers(
-    apiKey: config('asaas-php.mode.sandbox.key'),
+    apiKey: config('asaas-php.environment.sandbox.key'),
 );
 
 $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::list($resource);
@@ -552,7 +554,7 @@ dd($response);
 ### NOTIFICATIONS - UPDATE NOTIFICATION
 ```php
 $resource = new \TioJobs\AsaasPhp\Endpoints\Notifications\UpdateNotification(
-    apiKey: config('asaas-php.mode.sandbox.key'),
+    apiKey: config('asaas-php.environment.sandbox.key'),
     notificationId: 'not_3xd6o7qmx475t333',
     updateNotificationDTO: new \TioJobs\AsaasPhp\DataTransferObjects\Notifications\UpdateNotificationDTO(
         enabled: false,
@@ -598,7 +600,7 @@ $notification2 = new \TioJobs\AsaasPhp\DataTransferObjects\Notifications\UpdateN
 );
 
 $resource = new \TioJobs\AsaasPhp\Endpoints\Notifications\BatchUpdateNotifications(
-    apiKey: config('asaas-php.mode.sandbox.key'),
+    apiKey: config('asaas-php.environment.sandbox.key'),
     customerId: 'cus_000005824295',
 );
 

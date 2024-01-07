@@ -1,12 +1,14 @@
 <?php
 
 $version = env('ASAAS_API_VERSION', 'v3');
+$sandboxBaseUrl = env('ASAAS_SANDBOX_BASE_URL', 'https://sandbox.asaas.com/api/');
+$productionBaseUrl = env('ASAAS_PRODUCTION_BASE_URL', 'https://api.asaas.com/');
 
 return [
     'version' => $version,
-    'mode' => [
+    'environment' => [
         'sandbox' => [
-            'url' => "https://sandbox.asaas.com/api/{$version}",
+            'url' => "{$sandboxBaseUrl}{$version}",
             'key' => env('ASAAS_SANDBOX_API_KEY'),
             'pix_key' => env('ASAAS_SANDBOX_PIX_KEY'),
             'email' => env('ASAAS_SANDBOX_EMAIL_ACCOUNT'),
@@ -14,7 +16,7 @@ return [
             'webhook_token' => env('ASAAS_SANDBOX_WEBHOOK_TOKEN'),
         ],
         'production' => [
-            'url' => "https://api.asaas.com/{$version}",
+            'url' => "{$productionBaseUrl}{$version}",
             'key' => env('ASAAS_PRODUCTION_API_KEY'),
             'pix_key' => env('ASAAS_PRODUCTION_PIX_KEY'),
             'email' => env('ASAAS_PRODUCTION_EMAIL_ACCOUNT'),

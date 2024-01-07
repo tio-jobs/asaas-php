@@ -16,7 +16,7 @@ class StaticPixDTO
         public string $format = 'ALL',
         public ?string $expirationSeconds = null,
     ) {
-        $this->pixKey = config("asaas-php.mode.{$this->getMode()}.pix_key");
+        $this->pixKey = config("asaas-php.environment.{$this->getMode()}.pix_key");
 
         if (blank($this->expirationDateTime)) {
             $this->expirationDateTime = \Carbon\Carbon::now()->addYears(5)->format('Y-m-d H:i:s');

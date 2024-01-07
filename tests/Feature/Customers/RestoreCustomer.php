@@ -3,7 +3,7 @@
 test('restore a deleted customer', function () {
     // Found the first user
     $resourceList = new \TioJobs\AsaasPhp\Endpoints\Customers\ListCustomers(
-        apiKey: config('asaas-php.mode.sandbox.key'),
+        apiKey: config('asaas-php.environment.sandbox.key'),
     );
 
     $responseList = \TioJobs\AsaasPhp\Facades\AsaasPhp::list($resourceList);
@@ -11,7 +11,7 @@ test('restore a deleted customer', function () {
 
     // Delete found customer
     $resource = new \TioJobs\AsaasPhp\Endpoints\Customers\DeleteCustomer(
-        apiKey: config('asaas-php.mode.sandbox.key'),
+        apiKey: config('asaas-php.environment.sandbox.key'),
         id: $data['id'],
     );
 
@@ -24,7 +24,7 @@ test('restore a deleted customer', function () {
 
     // Restoring customer
     $resource = new \TioJobs\AsaasPhp\Endpoints\Customers\RestoreCustomer(
-        apiKey: config('asaas-php.mode.sandbox.key'),
+        apiKey: config('asaas-php.environment.sandbox.key'),
         id: $response['id'],
     );
 
