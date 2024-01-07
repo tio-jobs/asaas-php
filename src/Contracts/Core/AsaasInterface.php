@@ -8,5 +8,5 @@ interface AsaasInterface
     public function getPath(): string;
     public function getData(): array;
 
-    public function getToken(): ?string;
+    public function getToken(): mixed;
 }

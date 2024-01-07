@@ -3,14 +3,14 @@
 namespace TioJobs\AsaasPhp\Endpoints\Notifications;
 
 use TioJobs\AsaasPhp\Concerns\HasMode;
-use TioJobs\AsaasPhp\Concerns\HasNullableToken;
+use TioJobs\AsaasPhp\Concerns\HasToken;
 use TioJobs\AsaasPhp\Contracts\Core\AsaasInterface;
 use TioJobs\AsaasPhp\DataTransferObjects\Notifications\UpdateNotificationDTO;
 
 class BatchUpdateNotifications implements AsaasInterface
 {
     use HasMode;
-    use HasNullableToken;
+    use HasToken;
 
     /** @var array<int|string, array<string, bool|string|null>|bool|string>  */
     protected array $notifications = [];

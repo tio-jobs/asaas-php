@@ -5,14 +5,14 @@ namespace TioJobs\AsaasPhp\Endpoints\SubAccounts;
 use TioJobs\AsaasPhp\Concerns\HasApiKey;
 use TioJobs\AsaasPhp\Concerns\HasBlankData;
 use TioJobs\AsaasPhp\Concerns\HasMode;
-use TioJobs\AsaasPhp\Concerns\HasNullableToken;
+use TioJobs\AsaasPhp\Concerns\HasToken;
 use TioJobs\AsaasPhp\Contracts\Core\AsaasInterface;
 
 class CheckPendingDocuments implements AsaasInterface
 {
     use HasMode;
+    use HasToken;
     use HasBlankData;
-    use HasNullableToken;
 
     public function __construct(
         protected readonly string $apiKey,

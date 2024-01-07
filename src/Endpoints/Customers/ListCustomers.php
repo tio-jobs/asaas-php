@@ -4,7 +4,6 @@ namespace TioJobs\AsaasPhp\Endpoints\Customers;
 
 use TioJobs\AsaasPhp\Concerns\HasBlankData;
 use TioJobs\AsaasPhp\Concerns\HasMode;
-use TioJobs\AsaasPhp\Concerns\HasNullableToken;
 use TioJobs\AsaasPhp\Concerns\HasToken;
 use TioJobs\AsaasPhp\Contracts\Core\AsaasInterface;
 

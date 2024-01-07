@@ -115,7 +115,11 @@ dd($response);
 ---
 ### CUSTOMERS - RESTORE
 ```php
-$resource = new \TioJobs\AsaasPhp\Endpoints\Customers\RestoreCustomer(id: 'cus_000005824295');
+$resource = new \TioJobs\AsaasPhp\Endpoints\Customers\RestoreCustomer(
+    apiKey: config('asaas-php.mode.sandbox.key'),
+    id: 'cus_000005824295',
+);
+
 $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::restore($resource);
 
 dd($response);
@@ -318,6 +322,7 @@ dd($response);
 ---
 ### SUBACCOUNTS - CREATE SUBACCOUNT
 ```php
+$apiKey = config('asaas-php.mode.sandbox.key');
 $subAccountDto = new \TioJobs\AsaasPhp\DataTransferObjects\SubAccounts\SubAccountDTO(
     name: 'Larissa e Helena Advocacia Ltda',
     email: 'financeiro@larissaehelenaadvocacialtda.com.br',
@@ -334,6 +339,7 @@ $subAccountDto = new \TioJobs\AsaasPhp\DataTransferObjects\SubAccounts\SubAccoun
 );
 
 $resource = new \TioJobs\AsaasPhp\Endpoints\SubAccounts\CreateSubAccount(
+    apiKey: $apiKey,
     subAccountDTO: $subAccountDto,
 );
 

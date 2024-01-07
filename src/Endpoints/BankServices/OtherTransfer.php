@@ -3,7 +3,7 @@
 namespace TioJobs\AsaasPhp\Endpoints\BankServices;
 
 use TioJobs\AsaasPhp\Concerns\HasMode;
-use TioJobs\AsaasPhp\Concerns\HasNullableToken;
+use TioJobs\AsaasPhp\Concerns\HasToken;
 use TioJobs\AsaasPhp\Contracts\Core\AsaasInterface;
 use TioJobs\AsaasPhp\DataTransferObjects\BankServices\BankAccountDTO;
 use TioJobs\AsaasPhp\Enums\OperationTypeEnum;
@@ -12,7 +12,7 @@ use TioJobs\AsaasPhp\Enums\PixTypeEnum;
 class OtherTransfer implements AsaasInterface
 {
     use HasMode;
-    use HasNullableToken;
+    use HasToken;
 
     public function __construct(
         public readonly string            $apiKey,

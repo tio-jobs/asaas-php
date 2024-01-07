@@ -5,15 +5,15 @@ namespace TioJobs\AsaasPhp\Endpoints\Customers;
 use TioJobs\AsaasPhp\Concerns\HasBlankData;
 use TioJobs\AsaasPhp\Concerns\HasDocument;
 use TioJobs\AsaasPhp\Concerns\HasMode;
-use TioJobs\AsaasPhp\Concerns\HasNullableToken;
+use TioJobs\AsaasPhp\Concerns\HasToken;
 use TioJobs\AsaasPhp\Contracts\Core\AsaasInterface;
 
 class FindCustomerByDocument implements AsaasInterface
 {
     use HasDocument;
     use HasMode;
+    use HasToken;
     use HasBlankData;
-    use HasNullableToken;
 
     public function getPath(): string
     {

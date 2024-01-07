@@ -4,14 +4,14 @@ namespace TioJobs\AsaasPhp\Endpoints\Notifications;
 
 use TioJobs\AsaasPhp\Concerns\HasIdAndData;
 use TioJobs\AsaasPhp\Concerns\HasMode;
-use TioJobs\AsaasPhp\Concerns\HasNullableToken;
+use TioJobs\AsaasPhp\Concerns\HasToken;
 use TioJobs\AsaasPhp\Contracts\Core\AsaasInterface;
 use TioJobs\AsaasPhp\DataTransferObjects\Notifications\UpdateNotificationDTO;
 
 class UpdateNotification implements AsaasInterface
 {
     use HasMode;
-    use HasNullableToken;
+    use HasToken;
 
     public function __construct(
         public readonly string $apiKey,

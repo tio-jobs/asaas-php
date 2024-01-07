@@ -8,6 +8,7 @@ trait HasMode
 
     public function getMode(): string
     {
+        /** @phpstan-ignore-next-line  */
         return app()->isLocal() ? 'sandbox' : 'production';
     }
 }

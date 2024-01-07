@@ -3,7 +3,7 @@
 namespace TioJobs\AsaasPhp\Endpoints\Charges\CreditCard;
 
 use TioJobs\AsaasPhp\Concerns\HasMode;
-use TioJobs\AsaasPhp\Concerns\HasNullableToken;
+use TioJobs\AsaasPhp\Concerns\HasToken;
 use TioJobs\AsaasPhp\Contracts\Core\AsaasChargeInterface;
 use TioJobs\AsaasPhp\DataTransferObjects\Charges\CreditCard\DirectCreditCardDTO;
 use TioJobs\AsaasPhp\DataTransferObjects\Charges\CreditCard\PartialCreditCardDTO;
@@ -11,7 +11,7 @@ use TioJobs\AsaasPhp\DataTransferObjects\Charges\CreditCard\PartialCreditCardDTO
 class PartialChargeByCreditCard implements AsaasChargeInterface
 {
     use HasMode;
-    use HasNullableToken;
+    use HasToken;
 
     public function __construct(
         protected PartialCreditCardDTO $partialCreditCardDTO,

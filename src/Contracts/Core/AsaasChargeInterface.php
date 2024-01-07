@@ -10,5 +10,5 @@ interface AsaasChargeInterface
 
     public function getData(): array;
 
-    public function getToken(): ?string;
+    public function getToken(): mixed;
 }

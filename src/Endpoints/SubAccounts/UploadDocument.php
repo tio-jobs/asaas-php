@@ -3,14 +3,14 @@
 namespace TioJobs\AsaasPhp\Endpoints\SubAccounts;
 
 use TioJobs\AsaasPhp\Concerns\HasMode;
-use TioJobs\AsaasPhp\Concerns\HasNullableToken;
+use TioJobs\AsaasPhp\Concerns\HasToken;
 use TioJobs\AsaasPhp\Contracts\Core\AsaasInterface;
 use TioJobs\AsaasPhp\Enums\FileDocumentTypeEnum;
 
 class UploadDocument implements AsaasInterface
 {
     use HasMode;
-    use HasNullableToken;
+    use HasToken;
 
     public function __construct(
         public readonly string $apiKey,

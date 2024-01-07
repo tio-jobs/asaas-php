@@ -15,6 +15,7 @@ class ChargeByDynamicPix implements AsaasChargeInterface
     use HasToken;
 
     public function __construct(
+        public readonly string $apiKey,
         protected DynamicPixDTO $dynamicPixDTO,
     ) {
     }
@@ -39,19 +40,17 @@ class ChargeByDynamicPix implements AsaasChargeInterface
     }
 
     /**
-     * @param array<string,mixed> $response
-     * @return array<string,string>
+     * @return array<string, mixed>
      */
     public function getPixPaymentData(array $response): array
     {
-        assert(is_array($response));
-
         $endpoint = config("asaas-php.mode.{$this->getMode()}.url");
         assert(is_string($endpoint));
 
         $response = Http::withHeader('access_token', $this->getToken())
         ->get("{$endpoint}/payments/{$response['id']}/pixQrCode")
         ->json();
+        assert(is_array($response));
 
         if (!isset($response['success']) || $response['success'] !== true) {
             return [

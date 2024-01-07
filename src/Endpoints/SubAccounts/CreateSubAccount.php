@@ -2,19 +2,18 @@
 
 namespace TioJobs\AsaasPhp\Endpoints\SubAccounts;
 
-use TioJobs\AsaasPhp\Concerns\HasData;
 use TioJobs\AsaasPhp\Concerns\HasMode;
-use TioJobs\AsaasPhp\Concerns\HasNullableToken;
+use TioJobs\AsaasPhp\Concerns\HasToken;
 use TioJobs\AsaasPhp\Contracts\Core\AsaasInterface;
 use TioJobs\AsaasPhp\DataTransferObjects\SubAccounts\SubAccountDTO;
-use TioJobs\AsaasPhp\Enums\CompanyTypeEnum;
 
 class CreateSubAccount implements AsaasInterface
 {
+    use HasToken;
     use HasMode;
-    use HasNullableToken;
 
     public function __construct(
+        public readonly string $apiKey,
         protected SubAccountDTO $subAccountDTO,
     ) {
     }

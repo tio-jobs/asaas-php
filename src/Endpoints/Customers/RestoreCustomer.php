@@ -3,17 +3,21 @@
 namespace TioJobs\AsaasPhp\Endpoints\Customers;
 
 use TioJobs\AsaasPhp\Concerns\HasBlankData;
-use TioJobs\AsaasPhp\Concerns\HasId;
 use TioJobs\AsaasPhp\Concerns\HasMode;
-use TioJobs\AsaasPhp\Concerns\HasNullableToken;
+use TioJobs\AsaasPhp\Concerns\HasToken;
 use TioJobs\AsaasPhp\Contracts\Core\AsaasInterface;
 
 class RestoreCustomer implements AsaasInterface
 {
-    use HasId;
     use HasMode;
+    use HasToken;
     use HasBlankData;
-    use HasNullableToken;
+
+    public function __construct(
+        public readonly string $apiKey,
+        public readonly string $id,
+    ) {
+    }
 
     public function getPath(): string
     {

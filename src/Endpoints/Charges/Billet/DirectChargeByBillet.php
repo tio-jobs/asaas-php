@@ -3,14 +3,14 @@
 namespace TioJobs\AsaasPhp\Endpoints\Charges\Billet;
 
 use TioJobs\AsaasPhp\Concerns\HasMode;
-use TioJobs\AsaasPhp\Concerns\HasNullableToken;
+use TioJobs\AsaasPhp\Concerns\HasToken;
 use TioJobs\AsaasPhp\Contracts\Core\AsaasChargeInterface;
 use TioJobs\AsaasPhp\DataTransferObjects\Charges\Billet\DirectBilletDTO;
 
 class DirectChargeByBillet implements AsaasChargeInterface
 {
     use HasMode;
-    use HasNullableToken;
+    use HasToken;
 
     public function __construct(
         protected DirectBilletDTO $directBilletDTO,
