@@ -47,8 +47,12 @@ ASAAS_PRODUCTION_WEBHOOK_TOKEN='your-random-production-webhook-token'
 **NOTE:** All responses are located in `/examples/responses` directory of package.
 ### CUSTOMERS - LIST
 ```php
-$resource = new \TioJobs\AsaasPhp\Endpoints\Customers\ListCustomers();
+$resource = new \TioJobs\AsaasPhp\Endpoints\Customers\ListCustomers(
+    apiKey: config('asaas-php.mode.sandbox.key'),
+);
+
 $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::list($resource);
+
 dd($response);
 ```
 
