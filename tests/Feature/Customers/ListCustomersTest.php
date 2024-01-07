@@ -6,6 +6,7 @@ test('get all customers', function () {
     );
 
     $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::list($resource);
+
     $data = $response['data'][0] ?? [];
 
     expect(json_encode($data))
