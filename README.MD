@@ -115,7 +115,7 @@ For more available fields look at `https://docs.asaas.com/reference/atualizar-cl
 ```php
 $resource = new \TioJobs\AsaasPhp\Endpoints\Customers\DeleteCustomer(
     apiKey: config('asaas-php.mode.sandbox.key'),
-    id: 'cus_000005824295'
+    id: 'cus_000005824295',
 );
 
 $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::delete($resource);

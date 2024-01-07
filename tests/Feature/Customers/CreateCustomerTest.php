@@ -1,12 +1,11 @@
 <?php
 
-test('', function () {
+test('create new customer', function () {
+    $customer = generateCustomer();
+
     $resource = new \TioJobs\AsaasPhp\Endpoints\Customers\CreateCustomer(
-        apiKey: config('asaas-php.mode.sandbox.key'),
-        name: 'Fulano de Tal',
-        cpfCnpj: sanitize("376.962.245-65"),
-        email: str("fulano@teste.com.br")->lower()->toString(),
-        mobilePhone: sanitize("(16) 99222-3333"),
+        config('asaas-php.mode.sandbox.key'),
+        ...$customer,
     );
 
     $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::create($resource);
@@ -14,5 +13,5 @@ test('', function () {
     expect(json_encode($response))
         ->json()
         ->object->toBe('customer')
-        ->name->toBe('Fulano de Tal');
+        ->name->toBe($customer['name']);
 });

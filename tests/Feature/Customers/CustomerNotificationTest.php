@@ -9,12 +9,12 @@ test('check customer notifications', function () {
     $responseList = \TioJobs\AsaasPhp\Facades\AsaasPhp::list($resourceList);
     $data = $responseList['data'][0] ?? [];
 
+    // Get customer notifications
     $resource = new \TioJobs\AsaasPhp\Endpoints\Customers\CustomerNotification(
         apiKey: config('asaas-php.mode.sandbox.key'),
         id: $data['id'],
     );
 
-    // Get customer notifications
     $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::notifications($resource);
     $notification = $response['data'][0] ?? [];
 
