@@ -28,7 +28,7 @@
     </source>
     <php>
         <env name="DB_CONNECTION" value="testing" />
-        <env name="ASAAS_API_VERION" value="v3" />
+        <env name="ASAAS_API_VERSION" value="v3" />
         <env name="ASAAS_SANDBOX_API_KEY" value="" />
         <env name="ASAAS_SANDBOX_PIX_KEY" value="" />
         <env name="ASAAS_SANDBOX_EMAIL_ACCOUNT" value="" />

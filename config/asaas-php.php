@@ -1,6 +1,6 @@
 <?php
 
-$version = env('ASAAS_API_VERION', 'v3');
+$version = env('ASAAS_API_VERSION', 'v3');
 
 return [
     'version' => $version,

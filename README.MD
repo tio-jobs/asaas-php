@@ -30,7 +30,7 @@ php artisan vendor:publish
 ### CHANGING THE .ENV FILE
 Add the API KEY constant in your .env file (with single quotes):
 ```bash
-ASAAS_API_VERION=v3
+ASAAS_API_VERSION=v3
 ASAAS_SANDBOX_API_KEY='your-sandbox-key'
 ASAAS_SANDBOX_PIX_KEY=your-sandbox-pix-key
 ASAAS_SANDBOX_EMAIL_ACCOUNT='your-sandbox-email'
