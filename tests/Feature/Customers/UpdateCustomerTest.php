@@ -3,7 +3,7 @@
 test('update existing customer', function () {
     // Found the first user
     $resourceList = new \TioJobs\AsaasPhp\Endpoints\Customers\ListCustomers(
-        apiToken: config('asaas-php.mode.sandbox.key'),
+        apiKey: config('asaas-php.mode.sandbox.key'),
     );
 
     $responseList = \TioJobs\AsaasPhp\Facades\AsaasPhp::list($resourceList);

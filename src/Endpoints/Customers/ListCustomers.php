@@ -14,7 +14,7 @@ class ListCustomers implements AsaasInterface
     use HasBlankData;
 
     public function __construct(
-        public readonly string $apiToken,
+        public readonly string $apiKey,
     ) {
     }
 

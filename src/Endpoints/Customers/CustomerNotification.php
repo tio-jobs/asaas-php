@@ -10,10 +10,15 @@ use TioJobs\AsaasPhp\Contracts\Core\AsaasInterface;
 
 class CustomerNotification implements AsaasInterface
 {
-    use HasId;
     use HasMode;
     use HasToken;
     use HasBlankData;
+
+    public function __construct(
+        public readonly string $apiKey,
+        public readonly string $id,
+    ) {
+    }
 
     public function getPath(): string
     {
