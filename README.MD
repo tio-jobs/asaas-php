@@ -607,6 +607,36 @@ dd($response);
 ```
 
 ---
+### COVERAGE TESTS
+*CORE - Asaas Core Class*
+[] check list method
+[] check create method
+[] check get method
+[] check find method
+[] check update method
+[] check delete method
+[] check restore method
+[] check notifications method
+[] check charge method
+[] check upload method
+
+*CORE - AsaasPhp Facade*
+[x] check if facade returns the Asaas.php core class
+
+*CUSTOMERS*
+[x] Create Customer
+[x] Customer Notification
+[x] Delete Customer
+[x] Find Customer by Document
+[x] Get Customer
+[x] List Customer
+[x] Restore Customer
+[x] Update Customer
+
+*CHARGES - BILLET*
+[x]
+
+---
 ### WEBHOOKS
 We strongly recommend the `https://pipedream.com/` (logged with github) to configure your `ASAAS_SANDBOX_WEBHOOK_URL`.
 
