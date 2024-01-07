@@ -626,8 +626,12 @@ Route::post('/webhooks/asaas', function (Request $request) {
 composer install
  
 ```
-4. Copy the `phpunit.xml.dist` to `phpunit.xml` with your desired variables on bottom file.
-5. Enjoy it!
+4. Activate all the hooks:
+```bash
+./vendor/bin/captainhook install -f -s
+```
+5. Copy the `phpunit.xml.dist` to `phpunit.xml` with your desired variables on bottom file.
+6. Enjoy it!
 
 Running code style manually:
 ```bash

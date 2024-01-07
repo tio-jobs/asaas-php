@@ -1,51 +1,23 @@
 {
-  "commit-msg": {
-    "enabled": true,
-    "actions": []
-  },
   "pre-commit": {
     "enabled": true,
     "actions": [
       {
-        "action": "rm -rf coverage.xml",
+        "action": "rm -rf reports",
         "options": []
       },
       {
-        "action": "./vendor/bin/sail pint -v",
+        "action": "./vendor/bin/php-cs-fixer fix --diff",
         "options": []
       },
       {
-        "action": "./vendor/bin/sail bin phpstan analyse --memory-limit=2G",
+        "action": "./vendor/bin/phpstan analyse --memory-limit=2G",
         "options": []
       },
       {
-        "action": "./vendor/bin/sail art test --coverage-clover=coverage.xml",
+        "action": "XDEBUG_MODE=coverage ./vendor/bin/pest --coverage-clover=reports/coverage-clover.xml --coverage-html=reports/coverage.html --coverage-text=reports/coverage.txt",
         "options": []
       }
     ]
-  },
-  "prepare-commit-msg": {
-    "enabled": false,
-    "actions": []
-  },
-  "post-commit": {
-    "enabled": false,
-    "actions": []
-  },
-  "post-merge": {
-    "enabled": false,
-    "actions": []
-  },
-  "post-checkout": {
-    "enabled": false,
-    "actions": []
-  },
-  "post-rewrite": {
-    "enabled": false,
-    "actions": []
-  },
-  "post-change": {
-    "enabled": false,
-    "actions": []
   }
 }

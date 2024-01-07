@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Http;
 
 trait HasClient
 {
-
     /**
      * @param mixed $accessToken
      * @return PendingRequest
