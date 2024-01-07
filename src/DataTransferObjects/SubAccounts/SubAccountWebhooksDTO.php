@@ -17,11 +17,11 @@ class SubAccountWebhooksDTO
         public mixed       $authToken = null,
     ) {
         if (is_null($this->url)) {
-            $this->url = config("asaas-php.mode.{$this->getMode()}.webhook_url");
+            $this->url = config("asaas-php.environment.{$this->getMode()}.webhook_url");
         }
 
         if (is_null($this->email)) {
-            $this->email = config("asaas-php.mode.{$this->getMode()}.email");
+            $this->email = config("asaas-php.environment.{$this->getMode()}.email");
         }
 
         if (blank($this->apiVersion)) {
@@ -30,7 +30,7 @@ class SubAccountWebhooksDTO
         }
 
         if (blank($this->authToken)) {
-            $this->authToken = config("asaas-php.mode.{$this->getMode()}.webhook_token");
+            $this->authToken = config("asaas-php.environment.{$this->getMode()}.webhook_token");
         }
     }
 }

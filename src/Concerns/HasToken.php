@@ -8,6 +8,6 @@ trait HasToken
 
     public function getToken(): mixed
     {
-        return config("asaas-php.mode.{$this->getMode()}.key");
+        return config("asaas-php.environment.{$this->getMode()}.key");
     }
 }

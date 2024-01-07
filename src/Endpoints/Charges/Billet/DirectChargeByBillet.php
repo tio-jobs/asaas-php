@@ -19,7 +19,7 @@ class DirectChargeByBillet implements AsaasChargeInterface
 
     public function getPath(): string
     {
-        $endpoint = config("asaas-php.mode.{$this->getMode()}.url");
+        $endpoint = config("asaas-php.environment.{$this->getMode()}.url");
         assert(is_string($endpoint));
 
         return "{$endpoint}/payments";

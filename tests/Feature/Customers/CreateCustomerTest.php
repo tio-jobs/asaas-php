@@ -4,7 +4,7 @@ test('create new customer', function () {
     $customer = generateCustomer();
 
     $resource = new \TioJobs\AsaasPhp\Endpoints\Customers\CreateCustomer(
-        config('asaas-php.mode.sandbox.key'),
+        config('asaas-php.environment.sandbox.key'),
         ...$customer,
     );
 

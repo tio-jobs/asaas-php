@@ -3,7 +3,7 @@
 test('find customer by document', function () {
     // Find first customer
     $resourceList = new \TioJobs\AsaasPhp\Endpoints\Customers\ListCustomers(
-        apiKey: config('asaas-php.mode.sandbox.key'),
+        apiKey: config('asaas-php.environment.sandbox.key'),
     );
 
     $result = \TioJobs\AsaasPhp\Facades\AsaasPhp::list($resourceList);
@@ -11,7 +11,7 @@ test('find customer by document', function () {
 
     // Get customer by document
     $resource = new \TioJobs\AsaasPhp\Endpoints\Customers\FindCustomerByDocument(
-        apiKey: config('asaas-php.mode.sandbox.key'),
+        apiKey: config('asaas-php.environment.sandbox.key'),
         document: $data['cpfCnpj'],
     );
 

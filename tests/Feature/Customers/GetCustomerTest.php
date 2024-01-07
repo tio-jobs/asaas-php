@@ -3,7 +3,7 @@
 test('get specific customer by ID', function () {
     // Find a first customer
     $resource = new \TioJobs\AsaasPhp\Endpoints\Customers\ListCustomers(
-        apiKey: config('asaas-php.mode.sandbox.key'),
+        apiKey: config('asaas-php.environment.sandbox.key'),
     );
 
     $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::list($resource);
@@ -11,7 +11,7 @@ test('get specific customer by ID', function () {
 
     // Get customer by ID
     $resource = new \TioJobs\AsaasPhp\Endpoints\Customers\GetCustomer(
-        apiKey: config('asaas-php.mode.sandbox.key'),
+        apiKey: config('asaas-php.environment.sandbox.key'),
         id: $data['id'],
     );
 
