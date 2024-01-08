@@ -20,7 +20,7 @@ To get the ASAAS API KEY you need to access your Profile > Integrations.
 
 So now, you can install the beta-version with the following command:
 ```bash
-composer require tio-jobs/asaas-php:"v0.1.0-beta"
+composer require tio-jobs/asaas-php:v0.2.0-beta
 ```
 
 ---
