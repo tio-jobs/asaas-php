@@ -14,7 +14,7 @@ To get the ASAAS API KEY you need to access your Profile > Integrations.
 ---
 ### INSTALLING PACKAGE
 ```bash
-composer require tio-jobs/asaas-php
+composer require tio-jobs/asaas-php:"v0.1.0-beta"
 ```
 
 ---
@@ -31,12 +31,14 @@ php artisan vendor:publish
 Add the API KEY constant in your .env file (with single quotes):
 ```bash
 ASAAS_API_VERSION=v3
+
 ASAAS_SANDBOX_BASE_URL=https://sandbox.asaas.com/api/
 ASAAS_SANDBOX_API_KEY='your-sandbox-key'
 ASAAS_SANDBOX_PIX_KEY=your-sandbox-pix-key
 ASAAS_SANDBOX_EMAIL_ACCOUNT='your-sandbox-email'
 ASAAS_SANDBOX_WEBHOOK_URL='your-sandbox-webhook-url'
 ASAAS_SANDBOX_WEBHOOK_TOKEN='your-random-sandbox-webhook-token'
+
 ASAAS_PRODUCTION_BASE_URL=https://api.asaas.com/
 ASAAS_PRODUCTION_API_KEY='your-production-key'
 ASAAS_PRODUCTION_PIX_KEY=your-production-pix-key
