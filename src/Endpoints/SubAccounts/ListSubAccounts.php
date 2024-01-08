@@ -7,7 +7,7 @@ use TioJobs\AsaasPhp\Concerns\HasMode;
 use TioJobs\AsaasPhp\Concerns\HasToken;
 use TioJobs\AsaasPhp\Contracts\Core\AsaasInterface;
 
-class CheckPendingDocuments implements AsaasInterface
+class ListSubAccounts implements AsaasInterface
 {
     use HasMode;
     use HasToken;
@@ -23,6 +23,6 @@ class CheckPendingDocuments implements AsaasInterface
         $endpoint = config("asaas-php.environment.{$this->getMode()}.url");
         assert(is_string($endpoint));
 
-        return "{$endpoint}/myAccount/documents";
+        return "{$endpoint}/accounts";
     }
 }

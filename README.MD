@@ -24,7 +24,7 @@ composer require tio-jobs/asaas-php:"v0.1.0-beta"
 ```
 
 ---
-### PUBLISHING CONFIG FILE
+### PUBLISHING CONFIGURATION FILE
 To publish the config file just type:
 ```bash
 php artisan vendor:publish
@@ -377,6 +377,7 @@ dd($response);
 
 ---
 ### SUBACCOUNTS - CREATE SUBACCOUNT
+`note:` For personal account using CPF, the field `birthDate`is required.
 ```php
 $subAccountDto = new \TioJobs\AsaasPhp\DataTransferObjects\SubAccounts\SubAccountDTO(
     name: 'Larissa e Helena Advocacia Ltda',
@@ -399,6 +400,18 @@ $resource = new \TioJobs\AsaasPhp\Endpoints\SubAccounts\CreateSubAccount(
 );
 
 $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::create($resource);
+
+dd($response);
+```
+
+---
+### SUBACCOUNTS - LIST SUBACCOUNTS
+```php
+$resource = new \TioJobs\AsaasPhp\Endpoints\SubAccounts\ListSubAccounts(
+    apiKey: config('asaas-php.environment.sandbox.key'),
+);
+
+$response = \TioJobs\AsaasPhp\Facades\AsaasPhp::list($resource);
 
 dd($response);
 ```

@@ -17,6 +17,7 @@ class SubAccountDTO
         public readonly string                $addressNumber,
         public readonly string                $province,
         public readonly SubAccountWebhooksDTO $subAccountWebhooksDTO,
+        public ?string                         $birthDate = null,
         public readonly string                $complement = '',
         public readonly string                $site = '',
     ) {
