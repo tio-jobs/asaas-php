@@ -22,15 +22,15 @@ if (!function_exists('get_remote_ip')) {
 }
 
 if (!function_exists('attach')) {
-    /** @return array<string,string> */
+    /** @return array{'name': string, 'contents': string, 'filename': string} */
     function attach(string $filePath, string $fieldName = 'file'): array
     {
-        /** @phpstan-ignore-next-line  */
-        $fileName = str($filePath)->afterLast('/')->toString();
+        /** @phpstan-ignore-next-line */
+        $fileName = str($filePath)->afterLast(DIRECTORY_SEPARATOR)->toString();
 
         return [
             'name' => $fieldName,
-            'contents' => file_get_contents($filePath),
+            'contents' => strval(file_get_contents($filePath)),
             'filename' => $fileName,
         ];
     }
