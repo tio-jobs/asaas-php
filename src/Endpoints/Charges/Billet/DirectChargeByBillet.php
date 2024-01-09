@@ -13,6 +13,7 @@ class DirectChargeByBillet implements AsaasChargeInterface
     use HasToken;
 
     public function __construct(
+        public readonly string $apiKey,
         protected DirectBilletDTO $directBilletDTO,
     ) {
     }
