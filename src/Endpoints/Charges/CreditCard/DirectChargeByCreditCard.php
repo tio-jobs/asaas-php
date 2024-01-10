@@ -14,6 +14,7 @@ class DirectChargeByCreditCard implements AsaasChargeInterface
     use HasToken;
 
     public function __construct(
+        public readonly string $apiKey,
         protected DirectCreditCardDTO $directCreditCardDTO,
     ) {
     }
