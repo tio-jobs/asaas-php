@@ -14,6 +14,7 @@ class PartialChargeByCreditCard implements AsaasChargeInterface
     use HasToken;
 
     public function __construct(
+        public readonly string $apiKey,
         protected PartialCreditCardDTO $partialCreditCardDTO,
     ) {
     }

@@ -15,6 +15,7 @@ class ChargeByStaticPix implements AsaasChargeInterface
     use HasToken;
 
     public function __construct(
+        public readonly string $apiKey,
         protected StaticPixDTO $staticPixDTO,
     ) {
     }
