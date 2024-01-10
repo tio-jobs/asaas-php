@@ -10,10 +10,16 @@ use TioJobs\AsaasPhp\Contracts\Core\AsaasInterface;
 
 class DeleteUploadedChargeDocument implements AsaasInterface
 {
-    use HasIdAndDocument;
     use HasToken;
     use HasMode;
     use HasBlankData;
+
+    public function __construct(
+        public readonly string $apiKey,
+        public readonly string $id,
+        public readonly string $document,
+    ) {
+    }
 
     public function getPath(): string
     {

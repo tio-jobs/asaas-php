@@ -9,9 +9,15 @@ use TioJobs\AsaasPhp\Contracts\Core\AsaasInterface;
 
 class UpdateCharge implements AsaasInterface
 {
-    use HasIdAndData;
     use HasToken;
     use HasMode;
+
+    public function __construct(
+        public readonly string $apiKey,
+        public readonly string $id,
+        public readonly array $data,
+    ) {
+    }
 
     public function getPath(): string
     {

@@ -12,10 +12,16 @@ use TioJobs\AsaasPhp\DataTransferObjects\Charges\Billet\DirectBilletDTO;
 
 class ListAllCharges implements AsaasInterface
 {
-    use HasPagination;
     use HasToken;
     use HasMode;
     use HasBlankData;
+
+    public function __construct(
+        public readonly string $apiKey,
+        protected int $limit = 10,
+        protected int $offset = 0,
+    ) {
+    }
 
     public function getPath(): string
     {
