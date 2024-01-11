@@ -1,36 +1,36 @@
 <?php
 
-if (!function_exists('cleanString')) {
+if (! function_exists('cleanString')) {
     function cleanString(string $string): string
     {
         return (string) preg_replace('/[^A-Za-z0-9]/', '', $string);
     }
 }
 
-if (!function_exists('sanitize')) {
+if (! function_exists('sanitize')) {
     function sanitize(string $data): string
     {
         return cleanString($data);
     }
 }
 
-if (!function_exists('get_remote_ip')) {
+if (! function_exists('get_remote_ip')) {
     function get_remote_ip(): string
     {
         return $_SERVER['HTTP_CLIENT_IP'] ?? $_SERVER['HTTP_X_FORWARDED_FOR'] ?? $_SERVER['REMOTE_ADDR'] ?? '127.0.0.1';
     }
 }
 
-if (!function_exists('attach')) {
-    /** @return array{'name': string, 'contents': string, 'filename': string} */
+if (! function_exists('attach')) {
+    /** @return array<string,string> */
     function attach(string $filePath, string $fieldName = 'file'): array
     {
-        /** @phpstan-ignore-next-line */
-        $fileName = str($filePath)->afterLast(DIRECTORY_SEPARATOR)->toString();
+        /** @phpstan-ignore-next-line  */
+        $fileName = str($filePath)->afterLast('/')->toString();
 
         return [
             'name' => $fieldName,
-            'contents' => strval(file_get_contents($filePath)),
+            'contents' => file_get_contents($filePath),
             'filename' => $fileName,
         ];
     }
