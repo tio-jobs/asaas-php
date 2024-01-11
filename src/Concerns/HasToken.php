@@ -6,7 +6,7 @@ trait HasToken
 {
     use HasMode;
 
-    protected function withToken(): void
+    protected function injectApiKey(): void
     {
         $this->apiKey ??= config("asaas-php.environment.{$this->getMode()}.key"); // @phpstan-ignore-line
     }

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace TioJobs\AsaasPhp\Core;
 
+use Exception;
 use TioJobs\AsaasPhp\Concerns\HasClient;
 use TioJobs\AsaasPhp\Resource\BankResource;
 use TioJobs\AsaasPhp\Resource\ChargeResource;
@@ -15,9 +16,10 @@ class Asaas
 {
     use HasClient;
 
+
     public function __construct(public string $apiKey = '', public string $mode = '')
     {
-        $this->withToken();
+        $this->injectApiKey();
     }
 
     public function customer(): CustomerResource
