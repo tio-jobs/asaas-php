@@ -20,9 +20,9 @@ trait HasClient
         return config("asaas-php.environment.{$this->getMode()}.url"); // @phpstan-ignore-line
     }
 
-    public static function make(string $apiKey): self
+    public static function make(string $apiKey = '', string $mode = ''): self
     {
-        return new self($apiKey);
+        return new self($apiKey, $mode);
     }
 
     /**
