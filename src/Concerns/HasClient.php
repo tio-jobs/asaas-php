@@ -46,14 +46,15 @@ trait HasClient
     }
 
     /**
+     * @param callable $callback
+     * @param AsaasInterface $resource
      * @return array<string, mixed>
      * @throws ExceptionRequiredApiKey
      */
-    public function get(AsaasInterface $resource): array
+    protected function request(AsaasInterface $resource, callable $callback): array
     {
         try {
-            return (array) $this->client()
-                ->get($resource->getPath())
+            return (array) $callback($resource->getPath(), $resource->getData())
                 ->throw()
                 ->json();
         } catch (ExceptionRequiredApiKey $apiKeyException) {
@@ -61,6 +62,15 @@ trait HasClient
         } catch (Exception $exception) {
             return ['error' => $exception->getMessage()];
         }
+    }
+
+    /**
+     * @return array<string, mixed>
+     * @throws ExceptionRequiredApiKey
+     */
+    public function get(AsaasInterface $resource): array
+    {
+        return $this->request($resource, fn($path, $data) => $this->client()->get($path));
     }
 
     /**
@@ -69,16 +79,7 @@ trait HasClient
      */
     public function post(AsaasInterface $resource): array
     {
-        try {
-            return (array) $this->client()
-                ->post($resource->getPath(), $resource->getData())
-                ->throw()
-                ->json();
-        } catch (ExceptionRequiredApiKey $apiKeyException) {
-            throw $apiKeyException;
-        } catch (Exception $exception) {
-            return ['error' => $exception->getMessage()];
-        }
+        return $this->request($resource, fn($path, $data) => $this->client()->post($path, $data));
     }
 
     /**
@@ -87,16 +88,7 @@ trait HasClient
      */
     public function put(AsaasInterface $resource): array
     {
-        try {
-            return (array) $this->client()
-                ->put($resource->getPath(), $resource->getData())
-                ->throw()
-                ->json();
-        } catch (ExceptionRequiredApiKey $apiKeyException) {
-            throw $apiKeyException;
-        } catch (Exception $exception) {
-            return ['error' => $exception->getMessage()];
-        }
+        return $this->request($resource, fn($path, $data) => $this->client()->put($path, $data));
     }
 
     /**
@@ -105,16 +97,7 @@ trait HasClient
      */
     public function delete(AsaasInterface $resource): array
     {
-        try {
-            return (array) $this->client()
-                ->delete($resource->getPath())
-                ->throw()
-                ->json();
-        } catch (ExceptionRequiredApiKey $apiKeyException) {
-            throw $apiKeyException;
-        } catch (Exception $exception) {
-            return ['error' => $exception->getMessage()];
-        }
+        return $this->request($resource, fn($path, $data) => $this->client()->delete($path));
     }
 
     /**
@@ -123,16 +106,6 @@ trait HasClient
      */
     public function upload(AsaasInterface $resource): array
     {
-        try {
-            return (array) $this->client()
-                ->asMultipart()
-                ->post($resource->getPath(), $resource->getData())
-                ->throw()
-                ->json();
-        } catch (ExceptionRequiredApiKey $apiKeyException) {
-            throw $apiKeyException;
-        } catch (Exception $exception) {
-            return ['error' => $exception->getMessage()];
-        }
+        return $this->request($resource, fn($path, $data) => $this->client()->asMultipart()->post($path, $data));
     }
 }
