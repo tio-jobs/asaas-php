@@ -6,6 +6,7 @@ composer.lock
 .phpunit.result.cache
 .php-cs-fixer.cache
 .env
+.DS_Store
 index.php
 main.php
 test.php
