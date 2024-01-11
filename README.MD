@@ -1,5 +1,5 @@
 # ASAAS PHP
-This `Laravel Package` was created abstracting `ASAAS Payment Gateway` endpoints.
+This `Laravel Package` was created abstracting `ASAAS Payment Gateway` endpoints and allow to work with both, main and sub account!
 
 [ASAAS API REFERENCE](https://docs.asaas.com/reference/comece-por-aqui)
 ---
