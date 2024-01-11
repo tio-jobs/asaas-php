@@ -32,6 +32,10 @@ function generateCustomer(): array
 
 function asaasPhp(?string $apiKey = null, string $mode = 'sandbox'): Asaas
 {
+    if(config('asaas-php.allow_sub_accounts')){
+        return new Asaas((string) $apiKey, $mode);
+    }
+
     return new Asaas($apiKey ?? config('asaas-php.environment.sandbox.key'), $mode);
 }
 

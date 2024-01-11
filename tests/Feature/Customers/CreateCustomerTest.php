@@ -1,9 +1,11 @@
 <?php
 
+use TioJobs\AsaasPhp\Facades\AsaasPhp;
+
 test('create new customer', function () {
     $customer = generateCustomer();
 
-    $response = asaasPhp()->customer()->create(...$customer);
+    $response = AsaasPhp::withKey(config('asaas-php.environment.sandbox.key'), 'sandbox')->customer()->create(...$customer);
 
     expect(json_encode($response))
         ->json()
