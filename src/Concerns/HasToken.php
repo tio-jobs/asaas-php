@@ -6,8 +6,8 @@ trait HasToken
 {
     use HasMode;
 
-    public function getToken(): mixed
+    protected function withToken(): void
     {
-        return config("asaas-php.environment.{$this->getMode()}.key");
+        $this->apiKey ??= config("asaas-php.environment.{$this->getMode()}.key"); // @phpstan-ignore-line
     }
 }
