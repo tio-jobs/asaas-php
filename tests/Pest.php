@@ -1,5 +1,7 @@
 <?php
 
+use TioJobs\AsaasPhp\Core\Asaas;
+
 uses(\TioJobs\AsaasPhp\Tests\TestCase::class)->in(__DIR__);
 
 function generateCustomer(): array
@@ -10,8 +12,8 @@ function generateCustomer(): array
         'name' => $faker->name,
         'cpfCnpj' => $faker->cpf,
         'email' => $faker->safeEmail,
-        'phone' => '16' . $faker->landline,
-        'mobilePhone' => '16' . $faker->cellphone,
+        'phone' => '16'.$faker->landline,
+        'mobilePhone' => '16'.$faker->cellphone,
         'address' => explode(',', $faker->address)[1],
         'addressNumber' => $faker->randomNumber(4),
         'complement' => '',
@@ -28,6 +30,11 @@ function generateCustomer(): array
     ];
 }
 
+function asaasPhp(?string $apiKey = null, string $mode = 'sandbox'): Asaas
+{
+    return new Asaas($apiKey ?? config('asaas-php.environment.sandbox.key'), $mode);
+}
+
 function generateCompany(): array
 {
     $faker = \Faker\Factory::create('pt_BR');
@@ -36,8 +43,8 @@ function generateCompany(): array
         'name' => $faker->name,
         'cpfCnpj' => $faker->cnpj,
         'email' => $faker->safeEmail,
-        'phone' => '16' . $faker->landline,
-        'mobilePhone' => '16' . $faker->cellphone,
+        'phone' => '16'.$faker->landline,
+        'mobilePhone' => '16'.$faker->cellphone,
         'address' => 'Rua Visconde do Rio Branco',
         'addressNumber' => $faker->randomNumber(4),
         'complement' => '',

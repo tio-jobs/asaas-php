@@ -2,33 +2,22 @@
 
 test('restore a deleted customer', function () {
     // Found the first user
-    $resourceList = new \TioJobs\AsaasPhp\Endpoints\Customers\ListCustomers(
-        apiKey: config('asaas-php.environment.sandbox.key'),
-    );
+    $asaas = asaasPhp()->customer();
 
-    $responseList = \TioJobs\AsaasPhp\Facades\AsaasPhp::list($resourceList);
+    $responseList = $asaas->list();
     $data = $responseList['data'][0] ?? [];
 
-    // Delete found customer
-    $resource = new \TioJobs\AsaasPhp\Endpoints\Customers\DeleteCustomer(
-        apiKey: config('asaas-php.environment.sandbox.key'),
-        id: $data['id'],
-    );
 
-    $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::delete($resource);
+
+    $response = $asaas->delete($data['id']);
 
     expect(json_encode($response))
         ->json()
         ->deleted->toBeTrue()
         ->id->toBe($data['id']);
 
-    // Restoring customer
-    $resource = new \TioJobs\AsaasPhp\Endpoints\Customers\RestoreCustomer(
-        apiKey: config('asaas-php.environment.sandbox.key'),
-        id: $response['id'],
-    );
 
-    $restoredResponse = \TioJobs\AsaasPhp\Facades\AsaasPhp::restore($resource);
+    $restoredResponse = $asaas->restore($response['id']);
 
     expect(json_encode($restoredResponse))
         ->json()

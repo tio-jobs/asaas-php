@@ -3,12 +3,7 @@
 test('create new customer', function () {
     $customer = generateCustomer();
 
-    $resource = new \TioJobs\AsaasPhp\Endpoints\Customers\CreateCustomer(
-        config('asaas-php.environment.sandbox.key'),
-        ...$customer,
-    );
-
-    $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::create($resource);
+    $response = asaasPhp()->customer()->create(...$customer);
 
     expect(json_encode($response))
         ->json()
