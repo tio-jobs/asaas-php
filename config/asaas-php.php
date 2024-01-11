@@ -5,6 +5,7 @@ $sandboxBaseUrl = env('ASAAS_SANDBOX_BASE_URL', 'https://sandbox.asaas.com/api/'
 $productionBaseUrl = env('ASAAS_PRODUCTION_BASE_URL', 'https://api.asaas.com/');
 
 return [
+    'allow_sub_accounts' => env('ASAAS_ALLOW_SUB_ACCOUNTS', false),
     'version' => $version,
     'environment' => [
         'sandbox' => [
