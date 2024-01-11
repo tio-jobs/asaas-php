@@ -3,12 +3,13 @@
 namespace TioJobs\AsaasPhp\DataTransferObjects\Charges\Pix;
 
 use TioJobs\AsaasPhp\Concerns\HasMode;
-use TioJobs\AsaasPhp\Enums\BillingTypeEnum;
 
 class StaticPixDTO
 {
     use HasMode;
+
     public readonly mixed $pixKey;
+
     public function __construct(
         public readonly string $description,
         public readonly float $value,

@@ -2,30 +2,20 @@
 
 namespace TioJobs\AsaasPhp\Endpoints\SubAccounts;
 
-use TioJobs\AsaasPhp\Concerns\HasMode;
-use TioJobs\AsaasPhp\Concerns\HasToken;
 use TioJobs\AsaasPhp\Contracts\Core\AsaasInterface;
 use TioJobs\AsaasPhp\DataTransferObjects\SubAccounts\SubAccountDTO;
 
 class CreateSubAccount implements AsaasInterface
 {
-    use HasToken;
-    use HasMode;
-
     public function __construct(
-        public readonly string $apiKey,
         protected SubAccountDTO $subAccountDTO,
     ) {
     }
 
     public function getPath(): string
     {
-        $endpoint = config("asaas-php.environment.{$this->getMode()}.url");
-        assert(is_string($endpoint));
-
-        return "{$endpoint}/accounts";
+        return 'accounts';
     }
-
 
     /**
      * @return array<string, array<int, array<string, mixed>>|string>

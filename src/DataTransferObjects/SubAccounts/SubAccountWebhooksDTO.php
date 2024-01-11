@@ -9,12 +9,12 @@ class SubAccountWebhooksDTO
     use HasMode;
 
     public function __construct(
-        public mixed        $url = null,
-        public mixed        $email = null,
-        public ?int          $apiVersion = null,
+        public mixed $url = null,
+        public mixed $email = null,
+        public ?int $apiVersion = null,
         public readonly bool $enabled = true,
         public readonly bool $interrupted = true,
-        public mixed       $authToken = null,
+        public mixed $authToken = null,
     ) {
         if (is_null($this->url)) {
             $this->url = config("asaas-php.environment.{$this->getMode()}.webhook_url");
@@ -26,7 +26,7 @@ class SubAccountWebhooksDTO
 
         if (blank($this->apiVersion)) {
             /** @phpstan-ignore-next-line  */
-            $this->apiVersion = (int)str(config('asaas-php.version'))->replace('v', '')->toString();
+            $this->apiVersion = (int) str(config('asaas-php.version'))->replace('v', '')->toString();
         }
 
         if (blank($this->authToken)) {
