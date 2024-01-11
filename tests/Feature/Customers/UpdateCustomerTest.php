@@ -1,22 +1,14 @@
 <?php
 
 test('update existing customer', function () {
-    // Found the first user
-    $resourceList = new \TioJobs\AsaasPhp\Endpoints\Customers\ListCustomers(
-        apiKey: config('asaas-php.environment.sandbox.key'),
-    );
 
-    $responseList = \TioJobs\AsaasPhp\Facades\AsaasPhp::list($resourceList);
+    // Found the first user
+    $asaas = asaasPhp()->customer();
+
+    $responseList = $asaas->list();
     $data = $responseList['data'][0] ?? [];
 
-    // Editing the first user
-    $resource = new \TioJobs\AsaasPhp\Endpoints\Customers\UpdateCustomer(
-        apiKey: config('asaas-php.environment.sandbox.key'),
-        id: $data['id'],
-        mobilePhone: sanitize("(16) 99333-3333"),
-    );
-
-    $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::update($resource);
+    $response = $asaas->update(id: $data['id'], name: $data['name'], mobilePhone: sanitize('(16) 99333-3333'));
 
     expect(json_encode($response))
         ->json()

@@ -1,35 +1,31 @@
 <?php
 
+use TioJobs\AsaasPhp\DataTransferObjects\Charges\Billet\DirectBilletDTO;
+
 test('check if customer can charge by billet', function () {
     // Create a new customer
     $customer = generateCustomer();
 
-    $resourceCustomer = new \TioJobs\AsaasPhp\Endpoints\Customers\CreateCustomer(
-        config('asaas-php.environment.sandbox.key'),
-        ...$customer,
-    );
+    $asaas = asaasPhp();
 
-    $responseCustomer = \TioJobs\AsaasPhp\Facades\AsaasPhp::create($resourceCustomer);
+    $responseCustomer = $asaas->customer()->create(...$customer);
 
     // Create new charge by Billet
-    $data = new \TioJobs\AsaasPhp\DataTransferObjects\Charges\Billet\DirectBilletDTO(
+    $data = new DirectBilletDTO(
         customerId: $responseCustomer['id'],
         value: 19.99,
     );
 
-    $resource = new \TioJobs\AsaasPhp\Endpoints\Charges\Billet\DirectChargeByBillet(
-        apiKey: config('asaas-php.environment.sandbox.key'),
-        directBilletDTO: $data,
-    );
+    $charge = $asaas->charge();
 
-    $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::charge($resource);
+    $response = $charge->directByBillet($data);
 
     expect(json_encode($response))
         ->json()
         ->object->toBe('payment')
-        ->customer->toBe($responseCustomer['id']);
-
-    expect($resource->getBilletUrl($response))
+        ->customer->toBe($responseCustomer['id'])
+        ->and($charge->getBilletUrl($response))
         ->toBeString()
         ->toBeUrl();
+
 });

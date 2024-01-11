@@ -1,177 +1,47 @@
 <?php
 
+declare(strict_types=1);
+
 namespace TioJobs\AsaasPhp\Core;
 
-use Illuminate\Http\Client\RequestException;
-use Illuminate\Support\Facades\Http;
 use TioJobs\AsaasPhp\Concerns\HasClient;
-use TioJobs\AsaasPhp\Concerns\HasToken;
-use TioJobs\AsaasPhp\Contracts\Core\AsaasChargeInterface;
-use TioJobs\AsaasPhp\Contracts\Core\AsaasInterface;
+use TioJobs\AsaasPhp\Resource\BankResource;
+use TioJobs\AsaasPhp\Resource\ChargeResource;
+use TioJobs\AsaasPhp\Resource\CustomerResource;
+use TioJobs\AsaasPhp\Resource\NotificationResource;
+use TioJobs\AsaasPhp\Resource\SubAccountResource;
 
 class Asaas
 {
     use HasClient;
-    use HasToken;
 
-    /**
-     * @param AsaasInterface $resource
-     * @return mixed
-     */
-    public function list(AsaasInterface $resource)
+    public function __construct(public string $apiKey = '', public string $mode = '')
     {
-        try {
-            return $this->getClient($resource->getToken())
-                ->get($resource->getPath())
-                ->throw()
-                ->json();
-        } catch (\Exception $exception) {
-            return ['error' => $exception->getMessage()];
-        }
+        $this->withToken();
     }
 
-    /**
-     * @param AsaasInterface $resource
-     * @return mixed
-     */
-    public function create(AsaasInterface $resource)
+    public function customer(): CustomerResource
     {
-        try {
-            return $this->getClient($resource->getToken())
-                ->post($resource->getPath(), $resource->getData())
-                ->throw()
-                ->json();
-        } catch (\Exception $exception) {
-            return ['error' => $exception->getMessage()];
-        }
+        return new CustomerResource($this);
     }
 
-    /**
-     * @param AsaasInterface $resource
-     * @return mixed
-     */
-    public function get(AsaasInterface $resource)
+    public function bank(): BankResource
     {
-        try {
-            return $this->getClient($resource->getToken())
-                ->get($resource->getPath())
-                ->throw()
-                ->json();
-        } catch (\Exception $exception) {
-            return ['error' => $exception->getMessage()];
-        }
+        return new BankResource($this);
     }
 
-    /**
-     * @param AsaasInterface $resource
-     * @return mixed
-     */
-    public function find(AsaasInterface $resource)
+    public function charge(): ChargeResource
     {
-        try {
-            return $this->getClient($resource->getToken())
-                ->get($resource->getPath())
-                ->throw()
-                ->json();
-        } catch (\Exception $exception) {
-            return ['error' => $exception->getMessage()];
-        }
+        return new ChargeResource($this);
     }
 
-    /**
-     * @param AsaasInterface $resource
-     * @return mixed
-     */
-    public function update(AsaasInterface $resource)
+    public function notifications(): NotificationResource
     {
-        try {
-            return $this->getClient($resource->getToken())
-                ->put($resource->getPath(), $resource->getData())
-                ->throw()
-                ->json();
-        } catch (\Exception $exception) {
-            return ['error' => $exception->getMessage()];
-        }
+        return new NotificationResource($this);
     }
 
-    /**
-     * @param AsaasInterface $resource
-     * @return mixed
-     */
-    public function delete(AsaasInterface $resource)
+    public function subAccount(): SubAccountResource
     {
-        try {
-            return $this->getClient($resource->getToken())
-                ->delete($resource->getPath())
-                ->throw()
-                ->json();
-        } catch (\Exception $exception) {
-            return ['error' => $exception->getMessage()];
-        }
-    }
-
-    /**
-     * @param AsaasInterface $resource
-     * @return mixed
-     */
-    public function restore(AsaasInterface $resource)
-    {
-        try {
-            return $this->getClient($resource->getToken())
-                ->post($resource->getPath())
-                ->throw()
-                ->json();
-        } catch (\Exception $exception) {
-            return ['error' => $exception->getMessage()];
-        }
-    }
-
-    /**
-     * @param AsaasInterface $resource
-     * @return mixed
-     */
-    public function notifications(AsaasInterface $resource)
-    {
-        try {
-            return $this->getClient($resource->getToken())
-                ->get($resource->getPath())
-                ->throw()
-                ->json();
-        } catch (\Exception $exception) {
-            return ['error' => $exception->getMessage()];
-        }
-    }
-
-    /**
-     * @param AsaasChargeInterface $resource
-     * @return mixed
-     */
-    public function charge(AsaasChargeInterface $resource)
-    {
-        try {
-            return $this->getClient($resource->getToken())
-                ->post($resource->getPath(), $resource->getData())
-                ->throw()
-                ->json();
-        } catch (\Exception $exception) {
-            return ['error' => $exception->getMessage()];
-        }
-    }
-
-    /**
-     * @param AsaasInterface $resource
-     * @return mixed
-     */
-    public function upload(AsaasInterface $resource)
-    {
-        try {
-            return $this->getClient($resource->getToken())
-                ->asMultipart()
-                ->post($resource->getPath(), $resource->getData())
-                ->throw()
-                ->json();
-        } catch (\Exception $exception) {
-            return ['error' => $exception->getMessage()];
-        }
+        return new SubAccountResource($this);
     }
 }

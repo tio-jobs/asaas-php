@@ -2,8 +2,6 @@
 
 namespace TioJobs\AsaasPhp\Endpoints\BankServices;
 
-use TioJobs\AsaasPhp\Concerns\HasMode;
-use TioJobs\AsaasPhp\Concerns\HasToken;
 use TioJobs\AsaasPhp\Contracts\Core\AsaasInterface;
 use TioJobs\AsaasPhp\DataTransferObjects\BankServices\BankAccountDTO;
 use TioJobs\AsaasPhp\Enums\OperationTypeEnum;
@@ -11,29 +9,21 @@ use TioJobs\AsaasPhp\Enums\PixTypeEnum;
 
 class OtherTransfer implements AsaasInterface
 {
-    use HasMode;
-    use HasToken;
-
     public function __construct(
-        public readonly string            $apiKey,
-        public readonly float             $value,
+        public readonly float $value,
         public readonly OperationTypeEnum $operationTypeEnum,
-        public readonly ?BankAccountDTO   $bankAccountDTO = null,
-        public readonly ?string           $pixKey = null,
-        public readonly ?PixTypeEnum      $pixTypeEnum = null,
-        public readonly ?string           $descriptionForPix = null,
-        public readonly ?string           $scheduleDate = null,
+        public readonly ?BankAccountDTO $bankAccountDTO = null,
+        public readonly ?string $pixKey = null,
+        public readonly ?PixTypeEnum $pixTypeEnum = null,
+        public readonly ?string $descriptionForPix = null,
+        public readonly ?string $scheduleDate = null,
     ) {
     }
 
     public function getPath(): string
     {
-        $endpoint = config("asaas-php.environment.{$this->getMode()}.url");
-        assert(is_string($endpoint));
-
-        return "{$endpoint}/transfers";
+        return 'transfers';
     }
-
 
     /** @return array<string, array<string, array<string, string>|string>|float|string|null> */
     public function getData(): array
@@ -41,7 +31,7 @@ class OtherTransfer implements AsaasInterface
 
         $data = ['value' => $this->value];
 
-        if (!is_null($this->bankAccountDTO)) {
+        if (! is_null($this->bankAccountDTO)) {
             $bankData = [
                 'bankAccount' => [
                     'bank' => [
@@ -53,13 +43,13 @@ class OtherTransfer implements AsaasInterface
                     'account' => $this->bankAccountDTO->accountNumber,
                     'accountDigit' => $this->bankAccountDTO->accountDigit,
                     'bankAccountType' => $this->bankAccountDTO->bankAccountTypeEnum->value,
-                ]
+                ],
             ];
 
             $data = array_merge($data, $bankData);
         }
 
-        if (!is_null($this->pixKey) && $this->operationTypeEnum->value === 'PIX') {
+        if (! is_null($this->pixKey) && $this->operationTypeEnum->value === 'PIX') {
             $pixData = [
                 'pixAddressKey' => $this->pixKey,
                 'pixAddressKeyType' => $this->pixTypeEnum?->value,

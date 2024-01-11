@@ -2,17 +2,11 @@
 
 namespace TioJobs\AsaasPhp\Endpoints\Customers;
 
-use TioJobs\AsaasPhp\Concerns\HasMode;
-use TioJobs\AsaasPhp\Concerns\HasToken;
 use TioJobs\AsaasPhp\Contracts\Core\AsaasInterface;
 
 class UpdateCustomer implements AsaasInterface
 {
-    use HasMode;
-    use HasToken;
-
     public function __construct(
-        public readonly string $apiKey,
         public readonly string $id,
         public readonly ?string $name = null,
         public readonly ?string $cpfCnpj = null,
@@ -37,22 +31,33 @@ class UpdateCustomer implements AsaasInterface
 
     public function getPath(): string
     {
-        $endpoint = config("asaas-php.environment.{$this->getMode()}.url");
-        assert(is_string($endpoint));
-
-        return "{$endpoint}/customers/{$this->id}";
+        return "customers/{$this->id}";
     }
 
     /**
-     * @throws \JsonException
-     * @return array<string,mixed>
+     * @return array<string, mixed>
      */
     public function getData(): array
     {
-        $data = json_decode(json_encode($this, JSON_THROW_ON_ERROR), true, 512, JSON_THROW_ON_ERROR);
-        assert(is_array($data));
-        unset($data['apiKey'], $data['id']);
-
-        return array_filter($data, fn ($value) => !is_null($value));
+        return [
+            'name' => $this->name,
+            'cpfCnpj' => $this->cpfCnpj,
+            'email' => $this->email,
+            'phone' => $this->phone,
+            'mobilePhone' => $this->mobilePhone,
+            'address' => $this->address,
+            'addressNumber' => $this->addressNumber,
+            'complement' => $this->complement,
+            'province' => $this->province,
+            'postalCode' => $this->postalCode,
+            'externalReference' => $this->externalReference,
+            'notificationDisabled' => $this->notificationDisabled,
+            'additionalEmails' => $this->additionalEmails,
+            'municipalInscription' => $this->municipalInscription,
+            'stateInscription' => $this->stateInscription,
+            'observations' => $this->observations,
+            'groupName' => $this->groupName,
+            'company' => $this->company,
+        ];
     }
 }

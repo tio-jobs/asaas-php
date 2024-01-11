@@ -1,7 +1,10 @@
 <?php
 
-test('check if AsaasPhp facade return the Asaas instance', function () {
-    $asaas = \TioJobs\AsaasPhp\Facades\AsaasPhp::getFacadeRoot();
+use TioJobs\AsaasPhp\Core\Asaas;
+use TioJobs\AsaasPhp\Facades\AsaasPhp;
 
-    expect($asaas)->toBeInstanceOf(\TioJobs\AsaasPhp\Core\Asaas::class);
+test('check if AsaasPhp facade return the Asaas instance', function () {
+    $asaas = AsaasPhp::getFacadeRoot();
+
+    expect($asaas)->toBeInstanceOf(Asaas::class);
 });

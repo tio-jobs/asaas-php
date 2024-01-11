@@ -2,44 +2,34 @@
 
 namespace TioJobs\AsaasPhp\Endpoints\Charges\Billet;
 
-use TioJobs\AsaasPhp\Concerns\HasMode;
-use TioJobs\AsaasPhp\Concerns\HasToken;
-use TioJobs\AsaasPhp\Contracts\Core\AsaasChargeInterface;
+use TioJobs\AsaasPhp\Contracts\Core\AsaasInterface;
 use TioJobs\AsaasPhp\DataTransferObjects\Charges\Billet\DirectBilletDTO;
 
-class DirectChargeByBillet implements AsaasChargeInterface
+class DirectChargeByBillet implements AsaasInterface
 {
-    use HasMode;
-    use HasToken;
-
     public function __construct(
-        public readonly string $apiKey,
         protected DirectBilletDTO $directBilletDTO,
     ) {
     }
 
     public function getPath(): string
     {
-        $endpoint = config("asaas-php.environment.{$this->getMode()}.url");
-        assert(is_string($endpoint));
-
-        return "{$endpoint}/payments";
+        return 'payments';
     }
 
     /** @return array<string, array<string, string|null>|float|int|string> */
     public function getData(): array
     {
         return [
-            "customer" => $this->directBilletDTO->customerId,
-            "billingType" => $this->directBilletDTO->billingType->value,
-            "value" => $this->directBilletDTO->value,
-            "dueDate" => $this->directBilletDTO->dueDate,
+            'customer' => $this->directBilletDTO->customerId,
+            'billingType' => $this->directBilletDTO->billingType->value,
+            'value' => $this->directBilletDTO->value,
+            'dueDate' => $this->directBilletDTO->dueDate,
         ];
     }
 
     /**
-     * @param array<string,string> $response
-     * @return string
+     * @param  array<string,string>  $response
      */
     public function getBilletUrl(array $response): string
     {

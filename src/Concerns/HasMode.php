@@ -4,10 +4,14 @@ namespace TioJobs\AsaasPhp\Concerns;
 
 trait HasMode
 {
-    protected string $mode = '';
 
     public function getMode(): string
     {
+
+        if (!empty($this->mode)) {
+            return $this->mode;
+        }
+
         /** @phpstan-ignore-next-line  */
         return app()->isLocal() ? 'sandbox' : 'production';
     }

@@ -1,21 +1,21 @@
 <?php
 
-namespace TioJobs\AsaasPhp\Endpoints\Customers;
+namespace TioJobs\AsaasPhp\Endpoints\Charges\Pix;
 
 use TioJobs\AsaasPhp\Concerns\HasBlankData;
 use TioJobs\AsaasPhp\Contracts\Core\AsaasInterface;
 
-class FindCustomerByDocument implements AsaasInterface
+class ChargeQrCodePix implements AsaasInterface
 {
     use HasBlankData;
 
     public function __construct(
-        public readonly string $document,
+        public readonly string $id,
     ) {
     }
 
     public function getPath(): string
     {
-        return 'customers?cpfCnpj='.sanitize($this->document);
+        return "payments/{$this->id}/pixQrCode";
     }
 }

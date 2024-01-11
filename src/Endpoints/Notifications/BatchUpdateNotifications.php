@@ -2,53 +2,49 @@
 
 namespace TioJobs\AsaasPhp\Endpoints\Notifications;
 
-use TioJobs\AsaasPhp\Concerns\HasMode;
-use TioJobs\AsaasPhp\Concerns\HasToken;
 use TioJobs\AsaasPhp\Contracts\Core\AsaasInterface;
 use TioJobs\AsaasPhp\DataTransferObjects\Notifications\UpdateNotificationDTO;
 
 class BatchUpdateNotifications implements AsaasInterface
 {
-    use HasMode;
-    use HasToken;
-
-    /** @var array<int|string, array<string, bool|string|null>|bool|string>  */
-    protected array $notifications = [];
-
     public function __construct(
-        public readonly string $apiKey,
         public readonly string $customerId,
+        public array|UpdateNotificationDTO $updateNotificationDTO
     ) {
     }
 
     public function getPath(): string
     {
-        $endpoint = config("asaas-php.environment.{$this->getMode()}.url");
-        assert(is_string($endpoint));
-
-        return "{$endpoint}/notifications/batch";
+        return 'notifications/batch';
     }
 
-    public function addNotification(UpdateNotificationDTO $updateNotificationDTO): void
+    /** @return array<string, mixed> */
+    protected function getNotifications(): array
     {
-        $this->notifications[] = [
-            'id' => $updateNotificationDTO->notificationId,
-            'enabled' => $updateNotificationDTO->enabled,
-            'emailEnabledForProvider' => $updateNotificationDTO->emailEnabledForProvider,
-            'smsEnabledForProvider' => $updateNotificationDTO->smsEnabledForProvider,
-            'emailEnabledForCustomer' => $updateNotificationDTO->emailEnabledForCustomer,
-            'smsEnabledForCustomer' => $updateNotificationDTO->smsEnabledForCustomer,
-            'phoneCallEnabledForCustomer' => $updateNotificationDTO->phoneCallEnabledForCustomer,
-            'whatsappEnabledForCustomer' => $updateNotificationDTO->whatsappEnabledForCustomer,
-        ];
+        $notifications = $this->updateNotificationDTO;
+
+        if (! is_array($notifications)) {
+            $notifications = [$notifications];
+        }
+
+        foreach ($notifications as $notification) {
+            if (! $notification instanceof UpdateNotificationDTO) {
+                throw new \InvalidArgumentException('Invalid notification provided.');
+            }
+
+            $notifications[] = $notification->toArray();
+        }
+
+        return $notifications;
+
     }
 
-    /** @return array<string,string|array<int|string, array<string, bool|string|null>|bool|string>> */
+    /** @return array<string, mixed> */
     public function getData(): array
     {
         return [
             'customer' => $this->customerId,
-            'notifications' => $this->notifications,
+            'notifications' => $this->getNotifications(),
         ];
     }
 }

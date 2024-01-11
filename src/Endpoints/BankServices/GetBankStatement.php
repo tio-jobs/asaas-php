@@ -4,18 +4,13 @@ namespace TioJobs\AsaasPhp\Endpoints\BankServices;
 
 use Carbon\Carbon;
 use TioJobs\AsaasPhp\Concerns\HasBlankData;
-use TioJobs\AsaasPhp\Concerns\HasMode;
-use TioJobs\AsaasPhp\Concerns\HasToken;
 use TioJobs\AsaasPhp\Contracts\Core\AsaasInterface;
 
 class GetBankStatement implements AsaasInterface
 {
-    use HasMode;
-    use HasToken;
     use HasBlankData;
 
     public function __construct(
-        protected string $apiKey,
         protected ?string $startDate = null,
         protected ?string $endDate = null,
         protected int $offset = 0,
@@ -32,10 +27,6 @@ class GetBankStatement implements AsaasInterface
 
     public function getPath(): string
     {
-        $endpoint = config("asaas-php.environment.{$this->getMode()}.url");
-        assert(is_string($endpoint));
-        assert(is_string($endpoint));
-
-        return "{$endpoint}/financialTransactions?startDate={$this->startDate}&finishDate={$this->endDate}&offset={$this->offset}&limit={$this->limit}";
+        return "financialTransactions?startDate={$this->startDate}&finishDate={$this->endDate}&offset={$this->offset}&limit={$this->limit}";
     }
 }

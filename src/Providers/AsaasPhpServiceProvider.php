@@ -19,7 +19,7 @@ class AsaasPhpServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/../../config/asaas-php.php' => base_path('config/asaas-php.php'),
+            __DIR__.'/../../config/asaas-php.php' => base_path('config/asaas-php.php'),
         ], 'config');
     }
 }

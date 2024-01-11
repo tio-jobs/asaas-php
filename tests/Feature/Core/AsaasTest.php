@@ -1,8 +1,5 @@
 <?php
 
-use TioJobs\AsaasPhp\Contracts\Core\AsaasChargeInterface;
-use TioJobs\AsaasPhp\Contracts\Core\AsaasInterface;
-
 todo('check list method');
 todo('check create method');
 todo('check get method');
