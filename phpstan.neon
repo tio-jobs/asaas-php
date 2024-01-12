@@ -4,3 +4,4 @@ parameters:
     reportUnmatchedIgnoredErrors: true
     paths:
         - src
+    phpVersion: 80200 # PHP 8.2
