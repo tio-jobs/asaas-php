@@ -1,7 +1,7 @@
 parameters:
     level: max
+    phpVersion: 80100 # PHP 8.1
     checkMissingIterableValueType: false
     reportUnmatchedIgnoredErrors: true
     paths:
         - src
-    phpVersion: 80200 # PHP 8.2
