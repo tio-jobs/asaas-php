@@ -5,18 +5,18 @@ namespace TioJobs\AsaasPhp\DataTransferObjects\Notifications;
 use TioJobs\AsaasPhp\Contracts\Core\ArrayableInterface;
 use TioJobs\AsaasPhp\Enums\ScheduleOffsetEnum;
 
-readonly class UpdateNotificationDTO implements ArrayableInterface
+class UpdateNotificationDTO implements ArrayableInterface
 {
     public function __construct(
-        public ?string $notificationId = null,
-        public bool $enabled = true,
-        public bool $emailEnabledForProvider = false,
-        public bool $smsEnabledForProvider = false,
-        public bool $emailEnabledForCustomer = true,
-        public bool $smsEnabledForCustomer = true,
-        public bool $phoneCallEnabledForCustomer = false,
-        public bool $whatsappEnabledForCustomer = true,
-        public ?ScheduleOffsetEnum $scheduleOffset = null,
+        public readonly ?string $notificationId = null,
+        public readonly bool $enabled = true,
+        public readonly bool $emailEnabledForProvider = false,
+        public readonly bool $smsEnabledForProvider = false,
+        public readonly bool $emailEnabledForCustomer = true,
+        public readonly bool $smsEnabledForCustomer = true,
+        public readonly bool $phoneCallEnabledForCustomer = false,
+        public readonly bool $whatsappEnabledForCustomer = true,
+        public readonly ?ScheduleOffsetEnum $scheduleOffset = null,
     ) {
     }
 
