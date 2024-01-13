@@ -3,6 +3,7 @@
 namespace TioJobs\AsaasPhp\Concerns;
 
 use Exception;
+use GuzzleHttp\Promise\PromiseInterface;
 use Illuminate\Http\Client\PendingRequest;
 use Illuminate\Support\Facades\Http;
 use TioJobs\AsaasPhp\Contracts\Core\AsaasInterface;
@@ -43,6 +44,11 @@ trait HasClient
     public function withKey(string $apiKey, string $mode = ''): self
     {
         return $this->make($apiKey, $mode);
+    }
+
+    public function response(array|null|string $body = null, int $status = 200, array $headers = []): PromiseInterface
+    {
+        return Http::response($body, $status, $headers);
     }
 
     /**
