@@ -4,7 +4,6 @@ namespace TioJobs\AsaasPhp\Concerns;
 
 trait HasMode
 {
-
     public function getMode(): string
     {
 
