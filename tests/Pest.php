@@ -1,5 +1,6 @@
 <?php
 
+use GuzzleHttp\Promise\PromiseInterface;
 use TioJobs\AsaasPhp\Core\Asaas;
 
 uses(\TioJobs\AsaasPhp\Tests\TestCase::class)->in(__DIR__);
@@ -37,6 +38,11 @@ function asaasPhp(?string $apiKey = null, string $mode = 'sandbox'): Asaas
     }
 
     return new Asaas($apiKey ?? config('asaas-php.environment.sandbox.key'), $mode);
+}
+
+function fakeResponse(array|null|string $body = null, int $status = 200, array $headers = []): PromiseInterface
+{
+    return asaasPhp()->response($body, $status, $headers);
 }
 
 function generateCompany(): array
