@@ -19,7 +19,7 @@ trait HasClient
     protected function client(): PendingRequest
     {
 
-        if($this->hasAllowSubAccount() && empty($this->apiKey)){
+        if($this->hasAllowSubAccount() && empty($this->apiKey)) {
             throw new ExceptionRequiredApiKey('You must provide an API key. You can do so by passing it as a parameter to the constructor or methods (e.g., make(apiKey) or withKey(apiKey)).');
         }
 
@@ -76,7 +76,7 @@ trait HasClient
      */
     public function get(AsaasInterface $resource): array
     {
-        return $this->request($resource, fn($path, $data) => $this->client()->get($path));
+        return $this->request($resource, fn ($path, $data) => $this->client()->get($path));
     }
 
     /**
@@ -85,7 +85,7 @@ trait HasClient
      */
     public function post(AsaasInterface $resource): array
     {
-        return $this->request($resource, fn($path, $data) => $this->client()->post($path, $data));
+        return $this->request($resource, fn ($path, $data) => $this->client()->post($path, $data));
     }
 
     /**
@@ -94,7 +94,7 @@ trait HasClient
      */
     public function put(AsaasInterface $resource): array
     {
-        return $this->request($resource, fn($path, $data) => $this->client()->put($path, $data));
+        return $this->request($resource, fn ($path, $data) => $this->client()->put($path, $data));
     }
 
     /**
@@ -103,7 +103,7 @@ trait HasClient
      */
     public function delete(AsaasInterface $resource): array
     {
-        return $this->request($resource, fn($path, $data) => $this->client()->delete($path));
+        return $this->request($resource, fn ($path, $data) => $this->client()->delete($path));
     }
 
     /**
@@ -112,6 +112,6 @@ trait HasClient
      */
     public function upload(AsaasInterface $resource): array
     {
-        return $this->request($resource, fn($path, $data) => $this->client()->asMultipart()->post($path, $data));
+        return $this->request($resource, fn ($path, $data) => $this->client()->asMultipart()->post($path, $data));
     }
 }

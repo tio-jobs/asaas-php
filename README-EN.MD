@@ -1,66 +1,66 @@
 # ASAAS PHP
-Este `Pacote Laravel` foi criado abstraindo os endpoints do `Gateway de Pagamento ASAAS` e permite trabalhar com a conta principal e subconta!
+This `Laravel Package` was created abstracting `ASAAS Payment Gateway` endpoints and allow to work with both, main and sub account!
 
 [ASAAS API REFERENCE](https://docs.asaas.com/reference/comece-por-aqui)
 ---
 ### SYSTEM REQUIREMENTS
-- PHP 8.1+
+- PHP 8.2+
 - Composer 2+
 - Laravel 10+
 
 ---
-### OBTENDO A CHAVE DA API ASAAS
-Para obter a CHAVE DA API ASAAS, você precisa acessar seu Perfil > Integrações.
+### GETTING ASAAS API KEY
+To get the ASAAS API KEY you need to access your Profile > Integrations.
 
 ---
-### INSTALANDO O PACOTE
-`nota:` Este pacote ainda não está pronto para produção! Então, o primeiro passo, altere seu `composer.json` para:
+### INSTALLING PACKAGE
+`note:`This package isn't production ready yet! So, the first step, change your `composer.json` to:
 ```json
 "minimum-stability": "dev",
 ```
 
-Agora, você pode instalar a versão beta com o seguinte comando:
+So now, you can install the beta-version with the following command:
 ```bash
 composer require tio-jobs/asaas-php
 
-# ou
+# or
 
 composer require tio-jobs/asaas-php:v0.2.0-beta
 ```
 
 ---
-### PUBLICANDO O ARQUIVO DE CONFIGURAÇÃO
-Para publicar o arquivo de configuração, basta digitar:
+### PUBLISHING CONFIGURATION FILE
+To publish the config file just type:
 ```bash
 php artisan vendor:publish
 
-# então procure por AsaasPhpServiceProvider e pressione [ENTER]
+# then search by AsaasPhpServiceProvider and hit [ENTER]
 ```
 
 ---
-### ALTERANDO O ARQUIVO .ENV
-Adicione a constante da CHAVE DA API no seu arquivo .env (com aspas simples):
+### CHANGING THE .ENV FILE
+Add the API KEY constant in your .env file (with single quotes):
 ```bash
 ASAAS_API_VERSION=v3
 
 ASAAS_SANDBOX_BASE_URL=https://sandbox.asaas.com/api/
-ASAAS_SANDBOX_API_KEY='sua-chave-sandbox'
-ASAAS_SANDBOX_PIX_KEY=sua-chave-pix-sandbox
-ASAAS_SANDBOX_EMAIL_ACCOUNT='seu-email-sandbox'
-ASAAS_SANDBOX_WEBHOOK_URL='sua-url-webhook-sandbox'
-ASAAS_SANDBOX_WEBHOOK_TOKEN='seu-token-webhook-sandbox-aleatório'
+ASAAS_SANDBOX_API_KEY='your-sandbox-key'
+ASAAS_SANDBOX_PIX_KEY=your-sandbox-pix-key
+ASAAS_SANDBOX_EMAIL_ACCOUNT='your-sandbox-email'
+ASAAS_SANDBOX_WEBHOOK_URL='your-sandbox-webhook-url'
+ASAAS_SANDBOX_WEBHOOK_TOKEN='your-random-sandbox-webhook-token'
 
 ASAAS_PRODUCTION_BASE_URL=https://api.asaas.com/
-ASAAS_PRODUCTION_API_KEY='sua-chave-produção'
-ASAAS_PRODUCTION_PIX_KEY=sua-chave-pix-produção
-ASAAS_PRODUCTION_EMAIL_ACCOUNT='seu-email-produção'
-ASAAS_PRODUCTION_WEBHOOK_URL='sua-url-webhook-produção'
-ASAAS_PRODUCTION_WEBHOOK_TOKEN='seu-token-webhook-produção-aleatório'
+ASAAS_PRODUCTION_API_KEY='your-production-key'
+ASAAS_PRODUCTION_PIX_KEY=your-production-pix-key
+ASAAS_PRODUCTION_EMAIL_ACCOUNT='your-production-email'
+ASAAS_PRODUCTION_WEBHOOK_URL='your-production-webhook-url'
+ASAAS_PRODUCTION_WEBHOOK_TOKEN='your-random-production-webhook-token'
 ```
 ---
-## CONSUMINDO A API ASAAS
-**NOTA:** Todas as respostas estão localizadas no diretório /examples/responses do pacote.
-### CLIENTES - LISTAR
+## CONSUMING ASAAS API
+**NOTE:** All responses are located in `/examples/responses` directory of package.
+### CUSTOMERS - LIST
 ```php
 
 $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::make()->customer()->list();
@@ -69,11 +69,11 @@ dd($response);
 ```
 
 ---
-### CLIENTES - CRIAR
+### CUSTOMERS - CREATE
 ```php
 
 $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::make()->customer()->create(
-    name: 'Teste Usuário',
+    name: 'Teste Usuario',
     cpfCnpj: sanitize("012.345.678-90"),
     email: str("Teste@teste.com.br")->lower()->toString(),
     mobilePhone: sanitize("(16) 99222-2222")
@@ -81,10 +81,10 @@ $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::make()->customer()->create(
 
 dd($response);
 ```
-Para mais campos disponíveis, consulte: [https://docs.asaas.com/reference/criar-novo-cliente](https://docs.asaas.com/reference/criar-novo-cliente)
+For more available fields look at `https://docs.asaas.com/reference/criar-novo-cliente`
 
 ---
-### CLIENTES - OBTER
+### CUSTOMERS - GET
 ```php
 
 $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::make()->customer()->get(id: 'cus_000005500564');
@@ -93,7 +93,7 @@ dd($response);
 ```
 
 ---
-### CLIENTES - ENCONTRAR
+### CUSTOMERS - FIND
 ```php
 
 $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::make()->customer()->findByDocument(document: '01234567890');
@@ -102,18 +102,18 @@ dd($response);
 ```
 
 ---
-### CLIENTES - ATUALIZAR
-Aqui um exemplo de atualização de telefone móvel usando o `asaas-php`:
+### CUSTOMERS - UPDATE
+Here an example of mobile phone update using the `asaas-php`:
 ```php
 
-$response = \TioJobs\AsaasPhp\Facades\AsaasPhp::make()->customer()->update(id: 'cus_000005824295', mobilePhone: sanitize("(11) 91111-1111"));
+$response = \TioJobs\AsaasPhp\Facades\AsaasPhp::make()->customer()->update(id: 'cus_000005824295', mobilePhone: sanitize("(16) 99333-3333"));
 
 dd($response);
 ```
-Para mais campos disponíveis, consulte: [https://docs.asaas.com/reference/atualizar-cliente-existente](https://docs.asaas.com/reference/atualizar-cliente-existente)
+For more available fields look at `https://docs.asaas.com/reference/atualizar-cliente-existente`
 
 ---
-### CLIENTE - DELETAR
+### CUSTOMER - DELETE
 ```php
 
 $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::make()->customer()->delete(id: 'cus_000005824295');
@@ -122,7 +122,7 @@ dd($response);
 ```
 
 ---
-### CLIENTES - RESTAURAR
+### CUSTOMERS - RESTORE
 ```php
 
 $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::make()->customer()->restore(id: 'cus_000005824295',);
@@ -131,7 +131,7 @@ dd($response);
 ```
 
 ---
-### CLIENTES - NOTIFICAÇÕES
+### CUSTOMERS - NOTIFICATIONS
 ```php
 
 $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::make()->customer()->notifications( id: 'cus_000005824295',);
@@ -140,7 +140,7 @@ dd($response);
 ```
 
 ---
-### COBRANÇAS - PAGAMENTO DIRETO COM BOLETO
+### CHARGES - DIRECT PAYMENT WITH BILLET
 ```php
 $data = new \TioJobs\AsaasPhp\DataTransferObjects\Charges\Billet\DirectBilletDTO(
     customerId: 'cus_000005824295',
@@ -153,7 +153,7 @@ dd($response, $resource->getBilletUrl($response));
 ```
 
 ---
-### COBRANÇAS - COBRANÇA COM PIX DINÂMICO
+### CHARGES - CHARGE WITH DYNAMIC PIX
 ```php
 $data = new \TioJobs\AsaasPhp\DataTransferObjects\Charges\Pix\DynamicPixDTO(
     customerId: 'cus_000005824295',
@@ -167,10 +167,10 @@ dd($response, $resource->getPixPaymentData($response));
 ```
 
 ---
-### COBRANÇAS - COBRANÇA COM PIX ESTÁTICO
+### CHARGES - CHARGE WITH STATIC PIX
 ```php
 $data = new \TioJobs\AsaasPhp\DataTransferObjects\Charges\Pix\StaticPixDTO(
-    description: 'Pix Estático - Descrição do Teste',
+    description: 'Static Pix - Test Description',
     value: 19.90,
 );
 
@@ -181,7 +181,7 @@ dd($response);
 ```
 
 ---
-### COBRANÇAS - COBRANÇA DIRETA COM CARTÃO DE CRÉDITO
+### CHARGES - DIRECT CHARGE WITH CREDIT CARD
 ```php
 $creditCardDTO = new \TioJobs\AsaasPhp\DataTransferObjects\Charges\CreditCard\CreditCardDTO(
     holderName: 'marcelo h almeida',
@@ -215,7 +215,7 @@ dd($response);
 ```
 
 ---
-### COBRANÇAS - COBRANÇA PARCIAL COM CARTÃO DE CRÉDITO
+### CHARGES - PARTIAL CHARGE WITH CREDIT CARD
 ```php
 $creditCardDTO = new \TioJobs\AsaasPhp\DataTransferObjects\Charges\CreditCard\CreditCardDTO(
     holderName: 'marcelo h almeida',
@@ -252,7 +252,7 @@ dd($response);
 ```
 
 ---
-### COBRANÇAS - LISTAR TODAS AS COBRANÇAS
+### CHARGES - LIST ALL CHARGES
 ```php
 
 $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::make()->charge()->all(limit: 10, offset: 0);
@@ -261,7 +261,7 @@ dd($response);
 ```
 
 ---
-### COBRANÇAS - DELETAR COBRANÇA
+### CHARGES - DELETE CHARGE
 ```php
 
 $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::make()->charge()->delete( id: 'pay_t7b3b3fvioxuqx4e',);
@@ -270,7 +270,7 @@ dd($response);
 ```
 
 ---
-### COBRANÇAS - ATUALIZAR COBRANÇA
+### CHARGES - UPDATE CHARGE
 ```php
 
 $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::make()->charge()->update(
@@ -284,7 +284,7 @@ dd($response);
 ```
 
 ---
-### COBRANÇAS - ENVIAR DOCUMENTO PARA COBRANÇA
+### CHARGES - UPLOAD DOCUMENT TO CHARGE
 [POST] https://sandbox.asaas.com/api/v3/payments/{id}/documents
 ```php
 
@@ -301,7 +301,7 @@ dd($response);
 ```
 
 ---
-### COBRANÇAS - DELETAR DOCUMENTO ENVIADO PARA COBRANÇA
+### CHARGES - DELETE UPLOADED CHARGE DOCUMENT
 [DELETE] https://sandbox.asaas.com/api/v3/payments/{id}/documents/{documentId}
 ```php
 
@@ -311,8 +311,8 @@ dd($response);
 ```
 
 ---
-### SUBCONTAS - CRIAR SUBCONTA
-`nota:` Para conta pessoal usando CPF, o campo `birthDate` é obrigatório.
+### SUBACCOUNTS - CREATE SUBACCOUNT
+`note:` For personal account using CPF, the field `birthDate`is required.
 ```php
 $subAccountDto = new \TioJobs\AsaasPhp\DataTransferObjects\SubAccounts\SubAccountDTO(
     name: 'Larissa e Helena Advocacia Ltda',
@@ -335,7 +335,7 @@ dd($response);
 ```
 
 ---
-### SUBCONTAS - LISTAR SUBCONTAS
+### SUBACCOUNTS - LIST SUBACCOUNTS
 ```php
 
 $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::make()->subAccount()->all()
@@ -344,7 +344,7 @@ dd($response);
 ```
 
 ---
-### SUBCONTAS - VERIFICAR DOCUMENTOS PENDENTES
+### SUBACCOUNTS - CHECK PENDING DOCUMENTS
 ```php
 
 $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::make()->subAccount()->checkPendingDocuments()
@@ -353,7 +353,7 @@ dd($response);
 ```
 
 ---
-### SUBCONTAS - ENVIAR DOCUMENTOS PENDENTES
+### SUBACCOUNTS - UPLOAD PENDING DOCUMENTS
 
 ```php
 
@@ -367,7 +367,7 @@ dd($response);
 ```
 
 ---
-### SUBCONTAS - OBTER DOCUMENTOS ENVIADOS
+### SUBACCOUNTS - GET UPLOADED DOCUMENTS
 ```php
 
 $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::make()->subAccount()->getDocument(documentId: '37106b34-21b6-497f-bb12-87d924b34b16');
@@ -376,7 +376,7 @@ dd($response);
 ```
 
 ---
-### SUBCONTAS - ATUALIZAR DOCUMENTO ENVIADO
+### SUBACCOUNJTS - UPDATE UPLOADED DOCUMENT
 ```php
 
 $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::make()->subAccount()->updateDocument(
@@ -388,7 +388,7 @@ dd($response);
 ```
 
 ---
-### SUBCONTAS - DELETAR DOCUMENTO ENVIADO
+### SUBACCOUNTS - DELETE UPLOADED DOCUMENT
 ```php
 
 $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::make()->subAccount()->deleteDocument( documentId: '09f4903c-55fe-452e-bd4e-129780143214',);
@@ -397,8 +397,8 @@ dd($response);
 ```
 
 ---
-### SERVIÇOS BANCÁRIOS - EXTRATO BANCÁRIO
-Para ver todos os tipos de extrato bancário, consulte: [https://docs.asaas.com/reference/recuperar-extrato](https://docs.asaas.com/reference/recuperar-extrato)
+### BANK SERVICES - BANK STATEMENT
+To see all bank-statement types refer to https://docs.asaas.com/reference/recuperar-extrato
 
 ```php
 
@@ -413,7 +413,7 @@ dd($response);
 ```
 
 ---
-### SERVIÇOS BANCÁRIOS - TRANSFERIR PARA OUTRO BANCO OU CHAVE PIX
+### BANK SERVICES - TRANSFER TO OTHER BANK OR PIX KEY
 ```php
 $bankAccountDTO = new \TioJobs\AsaasPhp\DataTransferObjects\BankServices\BankAccountDTO(
     bankCode: '111',
@@ -440,7 +440,7 @@ dd($response);
 ```
 
 ---
-### SERVIÇOS BANCÁRIOS - TRANSFERIR PARA CONTA ASAAS
+### BANK SERVICES - TRANSFER TO ASAAS ACCOUNT
 ```php
 
 $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::make()->bank()->transferToAsaas( walletId: 'a45e79db-36ab-48e2-a278-d438cf14329f', value: 49.90,);
@@ -449,7 +449,7 @@ dd($response);
 ```
 
 ---
-### SERVIÇOS BANCÁRIOS - OBTER TRANSFERÊNCIA
+### BANK SERVICES - GET TRANSFER
 ```php
 
 $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::make()->bank()->getTransfer(transferId: 'be0ae5ad-a93e-4f82-8e12-964e5303627a');
@@ -458,7 +458,7 @@ dd($response);
 ```
 
 ---
-### SERVIÇOS BANCÁRIOS - OBTER TODAS AS TRANSFERÊNCIAS
+### BANK SERVICES - GET ALL TRANSFERS
 ```php
 
 $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::make()->bank()->getAllTransfers();
@@ -467,7 +467,7 @@ dd($response);
 ```
 
 ---
-### NOTIFICAÇÕES - ATUALIZAR NOTIFICAÇÃO
+### NOTIFICATIONS - UPDATE NOTIFICATION
 ```php
 
 $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::make()->notifications()->update(
@@ -487,7 +487,7 @@ $response = \TioJobs\AsaasPhp\Facades\AsaasPhp::make()->notifications()->update(
 dd($response);
 ```
 
-### NOTIFICAÇÕES - ATUALIZAÇÃO EM LOTE DE NOTIFICAÇÕES
+### NOTIFICATIONS - BATCH UPDATE NOTIFICATIONS
 ```php
 $notifications = [
     new \TioJobs\AsaasPhp\DataTransferObjects\Notifications\UpdateNotificationDTO(
@@ -523,40 +523,40 @@ dd($response);
 ```
 
 ---
-### TESTES DE COBERTURA
+### COVERAGE TESTS
 *CORE - Asaas Core Class*
-[] verificar método de listagem 
-[] verificar método de criação 
-[] verificar método de obtenção 
-[] verificar método de busca 
-[] verificar método de atualização 
-[] verificar método de exclusão 
-[] verificar método de restauração 
-[] verificar método de notificações 
-[] verificar método de cobrança 
-[] verificar método de upload
+[] check list method
+[] check create method
+[] check get method
+[] check find method
+[] check update method
+[] check delete method
+[] check restore method
+[] check notifications method
+[] check charge method
+[] check upload method
 
 *CORE - AsaasPhp Facade*
-[x] verificar se a facade retorna a classe core Asaas.php
+[x] check if facade returns the Asaas.php core class
 
-*CLIENTES*
-[x] Criar Cliente 
-[x] Notificação do Cliente 
-[x] Excluir Cliente 
-[x] Encontrar Cliente por Documento 
-[x] Obter Cliente 
-[x] Listar Cliente 
-[x] Restaurar Cliente 
-[x] Atualizar Cliente
+*CUSTOMERS*
+[x] Create Customer
+[x] Customer Notification
+[x] Delete Customer
+[x] Find Customer by Document
+[x] Get Customer
+[x] List Customer
+[x] Restore Customer
+[x] Update Customer
 
-*COBRANÇAS - BOLETO*
+*CHARGES - BILLET*
 [x]
 
 ---
 ### WEBHOOKS
-Recomendamos fortemente o [https://pipedream.com/](https://pipedream.com/) (logado com github) para configurar seu `ASAAS_SANDBOX_WEBHOOK_URL`.
+We strongly recommend the `https://pipedream.com/` (logged with github) to configure your `ASAAS_SANDBOX_WEBHOOK_URL`.
 
-Para `ASAAS_PRODUCTION_WEBHOOK_URL`,você pode criar uma rota POST em `routes/api.php`, por exemplo:
+For `ASAAS_PRODUCTION_WEBHOOK_URL`, you can create a POST route in `routes/api.php`, for example:
 ```php
 Route::post('/webhooks/asaas', function (Request $request) {
     // your business logic here!
@@ -565,27 +565,27 @@ Route::post('/webhooks/asaas', function (Request $request) {
 ```
 
 ---
-### CONTRIBUINDO - PASSO A PASSO
-1. Faça um fork deste projeto na sua conta do github
-2. Clone o projeto bifurcado no seu ambiente local
-3. Agora, você pode instalar as dependências e ativar os ganchos:
+### CONTRIBUTING - STEP BY STEP
+1. Fork this project on your github account
+2. Clone the forked project on your local environment
+3. So now, you can install dependencies and activate the hooks:
 ```bash
 composer install
  
 ```
-4. Ative todos os hooks:
+4. Activate all the hooks:
 ```bash
 ./vendor/bin/captainhook install -f -s
 ```
-5. Copie o `phpunit.xml.dist` para `phpunit.xml` com suas variáveis desejadas no final do arquivo.
-6. Aproveite!
+5. Copy the `phpunit.xml.dist` to `phpunit.xml` with your desired variables on bottom file.
+6. Enjoy it!
 
-Executando o estilo de código manualmente:
+Running code style manually:
 ```bash
 ./vendor/bin/php-cs-fixer fix --diff
 ```
 
-Executando a análise de código manualmente:
+Running code analysis manually:
 ```bash
 ./vendor/bin/phpstan analyse --memory-limit=2G
 ```
