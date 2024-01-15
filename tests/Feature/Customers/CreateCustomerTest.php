@@ -9,11 +9,11 @@ test('create new customer', function () {
     if (FakeApi()) {
         //Load fixtures
         $customer = fixture('data/customers/customer.php');
-        $customerFixture = fixture('responses/customers/create.php');
+        $customerEndpointResponse = fixture('responses/customers/create.php');
 
         //Serve customer endpoint response with Bypass
         $bypass = Bypass::serve(
-            Route::post(uri: '/customers', body: $customerFixture)
+            Route::post(uri: '/customers', body: $customerEndpointResponse)
         );
 
         //Set the Sandbox URL to bypass URL
