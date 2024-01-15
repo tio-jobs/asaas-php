@@ -1,14 +1,29 @@
 <?php
 
-use TioJobs\AsaasPhp\Facades\AsaasPhp;
+use Ciareis\Bypass\Route;
+use Ciareis\Bypass\Bypass;
 
 test('create new customer', function () {
     $customer = generateCustomer();
 
-    $response = AsaasPhp::withKey(config('asaas-php.environment.sandbox.key'), 'sandbox')->customer()->create(...$customer);
+    if (FakeApi()) {
+        //Load fixtures
+        $customer = fixture('data/customers/customer.php');
+        $customerFixture = fixture('responses/customers/create.php');
 
-    expect(json_encode($response))
-        ->json()
+        //Serve customer endpoint response with Bypass
+        $bypass = Bypass::serve(
+            Route::post(uri: '/customers', body: $customerFixture)
+        );
+
+        //Set the Sandbox URL to bypass URL
+        app('config')->set('asaas-php.environment.sandbox.url', $bypass->getBaseUrl());
+    }
+
+    $response = asaasPhp()->customer()->create(...$customer);
+
+    expect($response)
         ->object->toBe('customer')
-        ->name->toBe($customer['name']);
+        ->name->toBe($customer['name'])
+        ->and(array_keys($response))->toEqualCanonicalizing(['object','id','dateCreated','name','email','company','phone','mobilePhone','address','addressNumber','complement','province','postalCode','cpfCnpj','personType','deleted','additionalEmails','externalReference','notificationDisabled','observations','municipalInscription','stateInscription','canDelete','cannotBeDeletedReason','canEdit','cannotEditReason','city','state','country','groups']);
 });
