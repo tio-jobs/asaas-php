@@ -4,12 +4,11 @@ use TioJobs\AsaasPhp\DataTransferObjects\SubAccounts\SubAccountDTO;
 use TioJobs\AsaasPhp\DataTransferObjects\SubAccounts\SubAccountWebhooksDTO;
 use TioJobs\AsaasPhp\Enums\CompanyTypeEnum;
 
+// Limit of 20 accounts per day per key
+
 test('list all subaccounts', function () {
     $company = generateCompany();
 
-    $asaas = asaasPhp();
-
-    // Create new subaccount
     $subAccountDto = new SubAccountDTO(
         name: $company['name'],
         email: $company['email'],
@@ -25,16 +24,20 @@ test('list all subaccounts', function () {
         site: 'https://www.tester.com.br',
     );
 
-    $responseSubAccount = $asaas->subAccount()->create($subAccountDto);
+    $asaasSubAccount = asaasPhp()->subAccount();
+    $newSubAccount = $asaasSubAccount->create($subAccountDto);
 
-    expect(json_encode($responseSubAccount))
-        ->json()
+    //Create a sub-account
+    expect($newSubAccount)
         ->object->toBe('account')
-        ->email->toBe($company['email']);
+        ->email->toBe($company['email'])
+        ->and(array_keys($newSubAccount))->toEqualCanonicalizing(['object','id','name','email','loginEmail','phone','mobilePhone','address','addressNumber','complement','province','postalCode','cpfCnpj','birthDate','personType','companyType','city','state','country','tradingName','site','walletId','apiKey','accountNumber']);
 
-    $responseList = $asaas->subAccount()->all();
+    //Retrieve all sub-accounts
+    $allSubAccounts = $asaasSubAccount->all();
 
-    expect(json_encode($responseList['data'][0] ?? []))
-        ->json()
-        ->object->toBe('account');
-});
+    expect($allSubAccounts)
+        ->data->{0}->object->toBe('account')
+        ->and(array_keys($allSubAccounts))->toEqualCanonicalizing(['object','hasMore','totalCount','limit','offset','data']);
+
+})->onlyWithSandboxApi();
