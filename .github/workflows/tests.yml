@@ -1,0 +1,54 @@
+name: Tests
+
+on: ['push', 'pull_request', 'release']
+
+jobs:
+  ci:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: true
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        php: [8.1]
+        dependency-version: [prefer-stable]
+
+    name: Tests P${{ matrix.php }} - ${{ matrix.os }} - ${{ matrix.dependency-version }}
+
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Cache dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.composer/cache/files
+        key: dependencies-php-${{ matrix.php }}-composer-${{ hashFiles('composer.json') }}
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php }}
+        extensions: dom, mbstring, zip, fileinfo
+        coverage: none
+
+    - name: Install Composer dependencies
+      run: composer update --${{ matrix.dependency-version }} --no-interaction --prefer-dist
+
+    - name: Code style
+      if: matrix.os != 'windows-latest' #fails on windows
+      run: ./vendor/bin/php-cs-fixer fix --diff --dry-run --show-progress=none
+
+    - name: Static Analysis
+      run: ./vendor/bin/phpstan analyse --memory-limit=2G --no-interaction --no-progress --ansi
+
+    - name: Integration Tests (Simulating API)
+      if: github.event_name != 'release'
+      run: ./vendor/bin/pest --order-by random
+
+    - name: Integration Tests (Acessing Asaas API)
+      if: github.event_name == 'release'
+      run: ./vendor/bin/pest --order-by random
+      env:
+          ASAAS_SANDBOX_API_KEY: ${{ secrets.ACTIONS_ASAAS_SANDBOX_API_KEY }}
+          ACCESS_ASAAS_API: true
