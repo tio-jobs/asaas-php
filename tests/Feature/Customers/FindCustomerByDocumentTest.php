@@ -1,22 +1,22 @@
 <?php
 
 test('find customer by document', function () {
-    // Find first customer
+
     $asaas = asaasPhp()->customer();
 
-    $result = $asaas->list();
-    $data = $result['data'][0] ?? [];
+    $asaas->create(...generateCustomer());
 
-    $response = $asaas->findByDocument($data['cpfCnpj']);
+    $customerList = $asaas->list();
 
-    $customer = $response['data'][0] ?? [];
-
-    expect(json_encode($response))
-        ->json()
+    expect($customerList)
         ->object->toBe('list')
-        ->and(json_encode($customer))
-        ->json()
-        ->object->toBe('customer')
-        ->id->toBe($customer['id']);
+        ->data->not->toBeEmpty()
+        ->and(array_keys($customerList))->toEqualCanonicalizing(['object','hasMore','totalCount','limit','offset','data']);
 
-});
+    $firstCustomer = $asaas->findByDocument($customerList['data']['0']['cpfCnpj']);
+
+    expect($firstCustomer['data'][0])
+        ->object->toBe('customer')
+        ->id->toBe($customerList['data']['0']['id']);
+
+})->onlyWithSandboxApi();
