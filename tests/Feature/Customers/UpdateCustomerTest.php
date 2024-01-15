@@ -14,4 +14,4 @@ test('update existing customer', function () {
         ->json()
         ->object->toBe('customer')
         ->id->toBe($data['id']);
-});
+})->onlyWithSandboxApi();

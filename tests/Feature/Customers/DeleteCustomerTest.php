@@ -13,4 +13,4 @@ test('delete existing customer', function () {
         ->json()
         ->deleted->toBeTrue()
         ->id->toBe($data['id']);
-});
+})->onlyWithSandboxApi();
