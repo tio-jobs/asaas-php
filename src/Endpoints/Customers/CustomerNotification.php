@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 namespace TioJobs\AsaasPhp\Endpoints\Customers;
 
 use TioJobs\AsaasPhp\Concerns\HasBlankData;
