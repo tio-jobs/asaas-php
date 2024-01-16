@@ -27,7 +27,8 @@
         "pestphp/pest-plugin-watch": "^2.0",
         "captainhook/captainhook": "^5.19",
         "friendsofphp/php-cs-fixer": "^3.46",
-        "phpstan/phpstan": "^1.10"
+        "phpstan/phpstan": "^1.10",
+        "ciareis/bypass": "^1.1"
     },
     "autoload": {
         "psr-4": {
@@ -54,6 +55,28 @@
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
+        "scripts": {
+        "lint": [
+            "./vendor/bin/php-cs-fixer fix"
+        ],
+        "test:style": [
+            "./vendor/bin/php-cs-fixer fix --diff --dry-run"
+        ],
+        "test:types": [
+            "./vendor/bin/phpstan analyse --memory-limit=2G"
+        ],
+        "test:integration": [
+            "./vendor/bin/pest --order-by random"
+        ],
+        "test:asaas": [
+            "ACCESS_ASAAS_API=true ./vendor/bin/pest --order-by random"
+        ],
+        "tests": [
+            "@test:style",
+            "@test:types",
+            "@test:integration"
+        ]
+    },
     "config": {
         "allow-plugins": {
             "pestphp/pest-plugin": true

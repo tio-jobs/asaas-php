@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+
 
 it('properly sanitize strings')
   ->expect(fn (string $string) => sanitize($string))->toBe('Aa12345')

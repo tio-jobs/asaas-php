@@ -7,4 +7,4 @@ test('get all customers', function () {
     expect(json_encode($response['data'][0] ?? []))
         ->json()
         ->object->toBe('customer');
-});
+})->onlyWithSandboxApi();

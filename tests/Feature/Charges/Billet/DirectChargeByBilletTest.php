@@ -28,4 +28,4 @@ test('check if customer can charge by billet', function () {
         ->toBeString()
         ->toBeUrl();
 
-});
+})->onlyWithSandboxApi();

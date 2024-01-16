@@ -1,4 +1,5 @@
 <?php
+
 namespace TioJobs\AsaasPhp\Support;
 
 use Closure;

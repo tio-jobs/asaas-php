@@ -1,8 +1,13 @@
 # ASAAS PHP
+
 Este `Pacote Laravel` foi criado abstraindo os endpoints do `Gateway de Pagamento ASAAS` e permite trabalhar com a conta principal e subconta!
 
+` 🇺🇸 ` This `Laravel Package` was created abstracting the Brazilian `ASAAS Payment Gateway` endpoints. The documentation is available in Portuguese (PT-BR) for ease of use of our targeted developers in Brazil. If you have any questions, please do not hesitate to open an issue or contact the author.
+
 [ASAAS API REFERENCE](https://docs.asaas.com/reference/comece-por-aqui)
+
 ---
+
 ### SYSTEM REQUIREMENTS
 - PHP 8.1+
 - Composer 2+
@@ -56,10 +61,12 @@ ASAAS_PRODUCTION_PIX_KEY=sua-chave-pix-produção
 ASAAS_PRODUCTION_EMAIL_ACCOUNT='seu-email-produção'
 ASAAS_PRODUCTION_WEBHOOK_URL='sua-url-webhook-produção'
 ASAAS_PRODUCTION_WEBHOOK_TOKEN='seu-token-webhook-produção-aleatório'
+ASAAS_ALLOW_SUB_ACCOUNTS=false # Quando FALSE, carrega automaticamente a chave da API do .env; do contrário a mesma deverá no código
 ```
+
 ---
 ## CONSUMINDO A API ASAAS
-**NOTA:** Todas as respostas estão localizadas no diretório /examples/responses do pacote.
+**NOTA:** Todas as respostas estão localizadas no diretório \tests\Fixtures\responses.
 ### CLIENTES - LISTAR
 ```php
 
@@ -564,28 +571,10 @@ Route::post('/webhooks/asaas', function (Request $request) {
 });
 ```
 
----
-### CONTRIBUINDO - PASSO A PASSO
-1. Faça um fork deste projeto na sua conta do github
-2. Clone o projeto bifurcado no seu ambiente local
-3. Agora, você pode instalar as dependências e ativar os ganchos:
-```bash
-composer install
- 
-```
-4. Ative todos os hooks:
-```bash
-./vendor/bin/captainhook install -f -s
-```
-5. Copie o `phpunit.xml.dist` para `phpunit.xml` com suas variáveis desejadas no final do arquivo.
-6. Aproveite!
+## CONTRIBUTING
 
-Executando o estilo de código manualmente:
-```bash
-./vendor/bin/php-cs-fixer fix --diff
-```
+Contribuições são bem vindas. Por favor leia nossas [diretrizes de contribuição](CONTRIBUTING.md) (em inglês).
 
-Executando a análise de código manualmente:
-```bash
-./vendor/bin/phpstan analyse --memory-limit=2G
-```
+## CREDITS
+
+By [Icaro William](https://github.com/icarojobs) and [contributors](https://github.com/tio-jobs/asaas-php/graphs/contributors).

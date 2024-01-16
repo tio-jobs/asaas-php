@@ -40,5 +40,6 @@
         <env name="ASAAS_PRODUCTION_EMAIL_ACCOUNT" value="" />
         <env name="ASAAS_PRODUCTION_WEBHOOK_URL" value="" />
         <env name="ASAAS_PRODUCTION_WEBHOOK_TOKEN" value="" />
+        <env name="ASAAS_ALLOW_SUB_ACCOUNTS" value="" />
     </php>
 </phpunit>

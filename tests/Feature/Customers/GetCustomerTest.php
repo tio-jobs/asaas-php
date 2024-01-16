@@ -7,10 +7,10 @@ test('get specific customer by ID', function () {
     $response = $asaas->list();
     $data = $response['data'][0] ?? [];
 
-    $response = $asaas->get( $data['id']);
+    $response = $asaas->get($data['id']);
 
     expect(json_encode($response))
         ->json()
         ->object->toBe('customer')
         ->id->toBe($data['id']);
-});
+})->onlyWithSandboxApi();

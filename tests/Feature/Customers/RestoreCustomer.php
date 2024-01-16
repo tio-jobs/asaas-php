@@ -23,4 +23,4 @@ test('restore a deleted customer', function () {
         ->json()
         ->object->toBe('customer')
         ->deleted->toBeFalse();
-});
+})->onlyWithSandboxApi();

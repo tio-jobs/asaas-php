@@ -1,0 +1,32 @@
+<?php
+
+return  [
+    "object" => "account",
+    "id" => "b5459728-99ca-4c8b-a3d6-e2d73ff62af9",
+    "name" => "Larissa e Helena Advocacia Ltda",
+    "email" => "financeiro@larissaehelenaadvocacialtda.com.br",
+    "loginEmail" => "financeiro@larissaehelenaadvocacialtda.com.br",
+    "phone" => null,
+    "mobilePhone" => "11991736850",
+    "address" => "Rua Visconde do Rio Branco",
+    "addressNumber" => "123",
+    "complement" => null,
+    "province" => "Centro",
+    "postalCode" => "14015000",
+    "cpfCnpj" => "88354691000172",
+    "birthDate" => null,
+    "personType" => "JURIDICA",
+    "companyType" => "INDIVIDUAL",
+    "city" => 11871,
+    "state" => "SP",
+    "country" => "Brasil",
+    "tradingName" => null,
+    "site" => "https://www.larissaehelenaadvocacialtda.com.br",
+    "walletId" => "a45e79db-36ab-48e2-a278-d438cf14329f",
+    "apiKey" => "",
+    "accountNumber" => [
+        "agency" => "0001",
+        "account" => "107268",
+        "accountDigit" => "0",
+    ],
+];

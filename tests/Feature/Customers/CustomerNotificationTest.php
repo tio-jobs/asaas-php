@@ -2,7 +2,7 @@
 
 test('check customer notifications', function () {
 
-    $asaas= asaasPhp()->customer();
+    $asaas = asaasPhp()->customer();
 
     $responseList = $asaas->list();
     $data = $responseList['data'][0] ?? [];
@@ -18,4 +18,4 @@ test('check customer notifications', function () {
         ->object->toBe('notification')
         ->customer->toBe($data['id']);
 
-});
+})->onlyWithSandboxApi();
