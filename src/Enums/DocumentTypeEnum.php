@@ -11,4 +11,17 @@ enum DocumentTypeEnum: string
     case SPREADSHEET = 'SPREADSHEET';
     case PROGRAM = 'PROGRAM';
     case OTHER = 'OTHER';
+
+    public function getLabel(): ?string
+    {
+        return match ($this) {
+            self::INVOICE => 'INVOICE',
+            self::CONTRACT => 'CONTRACT',
+            self::MEDIA => 'MEDIA',
+            self::DOCUMENT => 'DOCUMENT',
+            self::SPREADSHEET => 'SPREADSHEET',
+            self::PROGRAM => 'PROGRAM',
+            self::OTHER => 'OTHER',
+        };
+    }
 }
