@@ -61,7 +61,7 @@ class ChargeByDynamicPix implements AsaasChargeInterface
 
         return [
             'encoded_image' => $response['encodedImage'],
-            'copy_paste_link' => $response['payload'],
+            'copy_past_link' => $response['payload'],
             'expiration_date' => $response['expirationDate'],
         ];
     }
